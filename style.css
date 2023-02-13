@@ -19,6 +19,7 @@
 	align-items: center;
 	flex-direction: column;
 	width: 500px;
+	height: 125px;
 	color: black;
 	font-family: Helvetica Neue;
 
@@ -28,8 +29,9 @@
 	display: flex;
 	align-items: center;
 	/* padding-top: 0px; */
-	margin-left: 20px;
+	/* margin-left: 20px; */
 	width: 300px;
+	height: 50px;
 	color: black;
 	font-family: Helvetica Neue;
 }
@@ -71,13 +73,14 @@
 }
 
 .inputFieldContainer{
-	justify-content: center;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	position: fixed;
 	bottom: 0;
 	width: 400px;
+	height: 60px;
+	padding: 10px;
 	border-radius: 25px;
 	background-color: black;
 
