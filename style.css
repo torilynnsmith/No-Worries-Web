@@ -8,7 +8,8 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	width: 500px;
+	/* width: 500px; */
+	padding: 10px;
 
 }
 
@@ -44,11 +45,17 @@
 	font-family: Helvetica Neue;
 }
 
-.icon {/*Text Message Icon Formatting*/
+.iconFriend {/*Text Message Icon Formatting*/
 	width: 30px;
 	height: 30px;
-	padding-right: 10px;
-	padding-left: 10px;
+	margin-right: 10px;
+	border-radius: 50%;
+}
+
+.iconPlayer {/*Text Message Icon Formatting*/
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
 	border-radius: 50%;
 }
 
@@ -63,11 +70,31 @@
 
 }
 
+.inputFieldContainer{
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	position: fixed;
+	bottom: 0;
+	width: 400px;
+	border-radius: 25px;
+	background-color: black;
+
+}
+
+.inputText{
+	color: white;
+	margin-left: 20px;
+	font-family: Helvetica Neue;
+	align-items: center;
+	justify-content: center;
+}
 
 .me {
+	background-color: #1F8CFF;
 	text-align: right;
 	color: white;
-	background-color: #1F8CFF;
 }
 
 .stacey {
