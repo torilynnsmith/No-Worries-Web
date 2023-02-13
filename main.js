@@ -9,10 +9,14 @@ function init(){
 
 function createMessage(character, text, isMe){
 	var output = "";
-	output += '<div class="message ' + character + '">';
+	// Name & Icon Formatting
+	output += '<div class="nameFriend">';
 	output += '<img class = "icon" src ="http://placekitten.com/30/30">';
-	output += '<p class=name ' + character + '">';
-	//printing the character name is where i left off
+	output += '<p class="nameText ' + character + '">';
+	//NOTE: still having issues getting the name to print/format
+	output += '</p></div>';
+	// Text Message Content Formatting
+	output += '<div class="messageIncoming">'
 	output += '<p class="messageText">';
 	output += text; 
 	output += '</p></div>';
