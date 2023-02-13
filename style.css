@@ -1,0 +1,48 @@
+.phoneContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.phoneMessages {
+	background-color: lightgray;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 500px;
+
+}
+
+.message {
+	background-color: #28282B;
+	padding: 10px;
+	margin: 20px;
+	width: 300px;
+	border-radius: 25px;
+	color: white;
+	font-family: Helvetica Neue;
+	/*this is a comment*/
+
+}
+
+.name {
+	color: lightgray;
+}
+
+.me {
+	text-align: right;
+	background-color: #1F8CFF;
+}
+
+.stacey {
+	
+}
+
+.james {
+	
+}
+
+@media (max-width: 800px){
+	.message {
+		/*this is a comment*/
+	}
+}
