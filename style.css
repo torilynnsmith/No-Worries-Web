@@ -1,3 +1,5 @@
+/* Do I need to format body? */
+
 .phoneContainer {
 	display: flex;
 	justify-content: center;
@@ -76,16 +78,21 @@
 .inputFieldContainer{
 	display: flex;
 	align-items: center;
-	flex-direction: column;
+	/* flex-direction: column; */
+	justify-content: center;
+	gap: 10px;
 	position: fixed;
+	margin: auto;
 	bottom: 0;
-	width: 400px;
+	width: 100%;
 	height: 60px;
 	padding: 10px;
-	border-radius: 25px;
+	/* border-radius: 25px; */
 	background-color: black;
 
 }
+
+/* Will need to add classes for the input text field and button probablay */
 
 .inputText{
 	color: white;
@@ -107,6 +114,38 @@
 
 .james {
 	
+}
+
+.timer {
+	font-family: Helvetica Neue;
+	color: white;
+	display: inline-block;
+	/* padding: 24px 32px; */
+	background-color: black;
+}
+
+.timer__part {
+	font-size: 20px;
+	/* font-weight: bold; */
+}
+
+.timer__btn {
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+	border-radius: 50%;
+	border: none;
+	color: white;
+	background-color: purple;
+	cursor: pointer;
+}
+
+.timer__btn--start {
+	background-color: green;
+}
+
+.timer__btn--stop {
+	background-color: red;
 }
 
 @media (max-width: 800px){

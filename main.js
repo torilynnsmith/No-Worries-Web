@@ -1,3 +1,9 @@
+// import Timer from "./countdown.js";
+
+// new Timer(
+// 	document.querySelector(".timer")
+// )
+
 
 function init(){
 	var messages = document.querySelector(".phoneMessages");
