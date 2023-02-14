@@ -4,18 +4,27 @@
 // 	document.querySelector(".timer")
 // )
 
-
 function init(){
+	// var obj=JSON.parse(data);
+	// console.log(data.messages[0].message);
+
 	var messages = document.querySelector(".phoneMessages");
-		messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		messages.innerHTML += createMessage ("me", "No worries.", true);
-		messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		messages.innerHTML += createMessage ("me", "No worries.", true);
-		messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		messages.innerHTML += createMessage ("me", "No worries.", true);
+
+	for (var i = 0; i < data.messages.length; i++){
+		// console.log(data.messages[i].message);
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+
+	}
+
+		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
+		// messages.innerHTML += createMessage ("me", "No worries.", true);
+		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
+		// messages.innerHTML += createMessage ("me", "No worries.", true);
+		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
+		// messages.innerHTML += createMessage ("me", "No worries.", true);
 
 }
 
