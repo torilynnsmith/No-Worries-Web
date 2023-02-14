@@ -1,4 +1,6 @@
-/* Do I need to format body? */
+body {
+	background-color: black;
+}
 
 .phoneContainer {
 	display: flex;
@@ -10,17 +12,17 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	/* width: 500px; */
+	width: auto;
 	padding: 10px;
 
 }
 
 .messageContainer{ /*Container for All Text Messages*/
-	justify-content: center;
 	display: flex;
+	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 500px;
+	width: auto;
 	height: 125px;
 	color: black;
 	font-family: Helvetica Neue;
@@ -30,8 +32,6 @@
 .nameFriend {/*Text Message Sender Container Formatting*/
 	display: flex;
 	align-items: center;
-	/* padding-top: 0px; */
-	/* margin-left: 20px; */
 	width: 300px;
 	height: 50px;
 	color: black;
@@ -42,8 +42,6 @@
 	display: flex;
 	justify-content: right;
 	align-items: center;
-	/* padding-top: 0px; */
-	margin-left: 20px;
 	width: 300px;
 	height: 50px;
 	color: black;
@@ -67,9 +65,9 @@
 .messageIncoming {/*Incoming Text Message Boxes Formatting*/
 	background-color: #28282B;
 	padding: 10px;
-	margin-left: 20px;
+	margin: auto;
 	width: 300px;
-	border-radius: 25px;
+	border-radius: 20px;
 	color: white;
 	font-family: Helvetica Neue;
 
@@ -78,16 +76,14 @@
 .inputFieldContainer{
 	display: flex;
 	align-items: center;
-	/* flex-direction: column; */
 	justify-content: center;
 	gap: 10px;
 	position: fixed;
 	margin: auto;
 	bottom: 0;
-	width: 100%;
+	width: auto;
 	height: 60px;
 	padding: 10px;
-	/* border-radius: 25px; */
 	background-color: black;
 
 }
@@ -102,26 +98,40 @@
 	justify-content: center;
 }
 
+.send__btn {
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+	border-radius: 50%;
+	border: none;
+	color: white;
+	background-color: #1F8CFF;
+	cursor: pointer;
+
+}
+
 .me {
 	background-color: #1F8CFF;
 	text-align: right;
 	color: white;
 }
 
-.stacey {
+.becca {
 	
 }
 
-.james {
+.miranda {
 	
 }
 
 .timer {
 	font-family: Helvetica Neue;
 	color: white;
-	display: inline-block;
-	/* padding: 24px 32px; */
+	display: flex;
 	background-color: black;
+	position: fixed;
+	align-items: center;
+	padding: 10px;
 }
 
 .timer__part {

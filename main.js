@@ -7,14 +7,14 @@
 
 function init(){
 	var messages = document.querySelector(".phoneMessages");
-		messages.innerHTML += createMessage ("stacey", "hi this is stacey.", false);
-		messages.innerHTML += createMessage ("james", "hi this is james.", false);
+		messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
 		messages.innerHTML += createMessage ("me", "No worries.", true);
-		messages.innerHTML += createMessage ("stacey", "hi this is stacey.", false);
-		messages.innerHTML += createMessage ("james", "hi this is james.", false);
+		messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
 		messages.innerHTML += createMessage ("me", "No worries.", true);
-		messages.innerHTML += createMessage ("stacey", "hi this is stacey.", false);
-		messages.innerHTML += createMessage ("james", "hi this is james.", false);
+		messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
 		messages.innerHTML += createMessage ("me", "No worries.", true);
 
 }
