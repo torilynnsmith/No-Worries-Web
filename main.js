@@ -4,6 +4,7 @@
 // 	document.querySelector(".timer")
 // )
 
+//initiate these functions OnLoad
 function init(){
 	// var obj=JSON.parse(data);
 	// console.log(data.messages[0].message);
@@ -28,6 +29,7 @@ function init(){
 
 }
 
+//Create messages: LINK TO A TIMER
 function createMessage(character, text, isMe){
 	var output = "";
 	// Name & Icon Formatting
@@ -63,3 +65,14 @@ function createMessage(character, text, isMe){
 
 	return output;
 }
+
+//store playerinput Text in a Variable: CHECK THIS AGAINST NO WORRIES
+let input = localStorage.getItem("input");
+
+function returnText(){
+	let input = document.getElementById("playerInputText").value;
+	localStorage.setItem('input',input);
+	alert(input);
+}
+
+console.log(input);
