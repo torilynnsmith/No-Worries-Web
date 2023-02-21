@@ -1,14 +1,12 @@
-
-
-
 //initiate these functions OnLoad
 function init(){
-	// var obj=JSON.parse(data);
-	// console.log(data.messages[0].message);
+
+	//Make the Timer
 	new Timer(
 		document.querySelector(".timer")
 	)
-
+	
+	//Make the friend messages on load
 	var messages = document.querySelector(".phoneMessages");
 
 	for (var i = 0; i < data.messages.length; i++){
@@ -29,13 +27,15 @@ function init(){
 
 }
 
-//Create messages
+//////////////////////////////////////////////////////////////////////////
+//Create Text Messages (Friend & Player)
 //TO DO:
 	//LINK TO A TIMER
 function createMessage(character, text, isMe){
 	var output = "";
 	// Name & Icon Formatting
 	output += '<div class="messageContainer">'
+
 	if (isMe===true){ // If a Player Text
 		//Container
 		output += '<div class="namePlayer">';
@@ -45,7 +45,8 @@ function createMessage(character, text, isMe){
 		output += '</p>';
 		//Icon
 		output += '<img class = "iconPlayer" src ="http://placekitten.com/30/30">';	
-	} else { // If a Friend Text
+	} 
+	else { // If a Friend Text
 		//Container
 		output += '<div class="nameFriend">';
 		//Icon
@@ -69,22 +70,26 @@ function createMessage(character, text, isMe){
 }
 
 //////////////////////////////////////////////////////////////////////////
-//store playerinput Text in a Variable: CHECK THIS AGAINST NO WORRIES
+//PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
 var correctMessage = ["No Worries."]; 
-// var result = null;
 
 function returnText(){
 	input = document.getElementById("playerInputText").value;
 	// localStorage.setItem('input',input);
-	alert(input);
+	// alert(input);
+
+	//create a player text message
+	//TO DO: check if it matches in matchString. if no, create the delete and retype message thing.
+	var messages = document.querySelector(".phoneMessages");
+	messages.innerHTML += createMessage ("me", correctMessage, true);
+
 
 	matchString(); 
 }
 
 //CHECK IF PLAYER INPUT MATCHES NO WORRIES
 function matchString(){
-	//PROBLEM: input is saving the previous player input, even on reload, and printing that in the console
 	var result = input.match(/no worries/gi);
 	console.log ("Output : " + result);
 	console.log(input);
@@ -92,14 +97,61 @@ function matchString(){
 
 // console.log(input);
 
-
-
-
+//////////////////////////////////////////////////////////////////////////
+//TIMER STUFF
 class Timer {
     constructor (root){
         root.innerHTML = Timer.getHTML();
 
+		this.el = {
+			minutes: root.querySelector(".timer__part--minutes"),
+			seconds: root.querySelector(".timer__part--seconds"),
+			control: root.querySelector(".timer__part--control"),
+			reset: root.querySelector(".timer__btn--reset"),
+		};
+
+		this.interval = 40; 
+		this.remainingSeconds = 90; //in seconds
+
+		// this.updateInterfaceTime();
+		this.updateInterfaceControls();
+
+		this.el.control.addEventListener("click", () => {
+			//To Do: add in tutorial code
+		})
+
+		this.el.reset.addEventListener("click", () => {
+			//To Do: add in tutorial code
+		})
+
     }
+
+	updateInterfaceTime(){
+		const minutes = Math.floor(this.remainingSeconds / 60);
+		const seconds = this.remainingSeconds % 60; 
+		// console.log(minutes, seconds);
+
+		//minutes & seconds must be at least 2 characters, if 2 characters doesn't exist, add a zero to the front. 
+		this.el.minutes.textContent = minutes.toString().padStart(2,"0");
+		this.el.seconds.textContent = seconds.toString().padStart(2,"0");
+
+	}
+
+	updateInterfaceControls (){
+		//TO DO: this isn't updating to the pause icon correctly
+		//left off tutorial at 25:24
+		//https://www.youtube.com/watch?v=PIiMSMz7KzM
+		if (this.interval === null){
+			this.el.control.innerHTML = '<span class="material-icons">play_circle</span>';
+			this.el.control.classList.add("timer__btn--start");
+			this.el.control.classList.remove("timer__btn--stop");
+		} else {
+			this.el.control.innerHTML = '<span class="material-icons">pause</span>';
+			this.el.control.classList.add("timer__btn--stop");
+			this.el.control.classList.remove("timer__btn--start");
+
+		}
+	}
 
     static getHTML(){
         return `
