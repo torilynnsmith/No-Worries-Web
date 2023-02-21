@@ -1,6 +1,6 @@
 export default class Timer {
     constructor (root){
-        root.innerHTML = Timner.getHTML();
+        root.innerHTML = Timer.getHTML();
 
     }
 

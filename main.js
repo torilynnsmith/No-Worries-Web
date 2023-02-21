@@ -1,13 +1,13 @@
-// import Timer from "./countdown.js";
 
-// new Timer(
-// 	document.querySelector(".timer")
-// )
+
 
 //initiate these functions OnLoad
 function init(){
 	// var obj=JSON.parse(data);
 	// console.log(data.messages[0].message);
+	new Timer(
+		document.querySelector(".timer")
+	)
 
 	var messages = document.querySelector(".phoneMessages");
 
@@ -29,7 +29,9 @@ function init(){
 
 }
 
-//Create messages: LINK TO A TIMER
+//Create messages
+//TO DO:
+	//LINK TO A TIMER
 function createMessage(character, text, isMe){
 	var output = "";
 	// Name & Icon Formatting
@@ -66,13 +68,50 @@ function createMessage(character, text, isMe){
 	return output;
 }
 
+//////////////////////////////////////////////////////////////////////////
 //store playerinput Text in a Variable: CHECK THIS AGAINST NO WORRIES
 let input = localStorage.getItem("input");
+var correctMessage = ["No Worries."]; 
+// var result = null;
 
 function returnText(){
-	let input = document.getElementById("playerInputText").value;
-	localStorage.setItem('input',input);
+	input = document.getElementById("playerInputText").value;
+	// localStorage.setItem('input',input);
 	alert(input);
+
+	matchString(); 
 }
 
-console.log(input);
+//CHECK IF PLAYER INPUT MATCHES NO WORRIES
+function matchString(){
+	//PROBLEM: input is saving the previous player input, even on reload, and printing that in the console
+	var result = input.match(/no worries/gi);
+	console.log ("Output : " + result);
+	console.log(input);
+} 
+
+// console.log(input);
+
+
+
+
+class Timer {
+    constructor (root){
+        root.innerHTML = Timer.getHTML();
+
+    }
+
+    static getHTML(){
+        return `
+            <span class="timer__part timer__part--minutes">00</span>
+            <span class="timer__part">:</span>
+            <span class="timer__part timer__part--seconds">00</span>
+            <button type="button" class="timer__btn timer__btn--control timer__btn--start">
+                <span class="material-icons">play_circle</span>
+            </button>
+            <button type="button" class="timer__btn timer__btn--reset">
+            <span class="material-icons">timer</span>
+            </button>
+        `;
+    }
+}
