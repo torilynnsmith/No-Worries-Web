@@ -1,10 +1,5 @@
 //initiate these functions OnLoad
 function init(){
-
-	//Make the Timer
-	new Timer(
-		document.querySelector(".timer")
-	)
 	
 	//Make the friend messages on load
 	var messages = document.querySelector(".phoneMessages");
@@ -24,6 +19,11 @@ function init(){
 		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
 		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
 		// messages.innerHTML += createMessage ("me", "No worries.", true);
+	
+	//Make the Timer
+	new Timer(
+		document.querySelector(".timer")
+	)
 
 }
 
@@ -70,7 +70,7 @@ function createMessage(character, text, isMe){
 }
 
 //////////////////////////////////////////////////////////////////////////
-//PLAYER TEXT INPUT
+// //PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
 var correctMessage = ["No Worries."]; 
 
@@ -145,7 +145,7 @@ class Timer {
 			this.el.control.innerHTML = '<span class="material-icons">play_circle</span>';
 			this.el.control.classList.add("timer__btn--start");
 			this.el.control.classList.remove("timer__btn--stop");
-		} else {
+		} else { //WHERE I LEFT OFF: IMAGE REF IS THROWING AN ERROR
 			this.el.control.innerHTML = '<span class="material-icons">pause</span>';
 			this.el.control.classList.add("timer__btn--stop");
 			this.el.control.classList.remove("timer__btn--start");
