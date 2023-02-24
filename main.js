@@ -24,6 +24,9 @@ function init(){
 	new Timer(
 		document.querySelector(".timer")
 	)
+	// updateInterfaceTime();
+	// updateInterfaceControls();
+
 
 }
 
@@ -83,7 +86,8 @@ function returnText(){
 	//TO DO: check if it matches in matchString. if no, create the delete and retype message thing.
 	var messages = document.querySelector(".phoneMessages");
 	messages.innerHTML += createMessage ("me", correctMessage, true);
-
+	
+	//TO DO: How to reset the placeholder text?
 
 	matchString(); 
 }
@@ -100,6 +104,7 @@ function matchString(){
 //////////////////////////////////////////////////////////////////////////
 //TIMER STUFF
 class Timer {
+	
     constructor (root){
         root.innerHTML = Timer.getHTML();
 
@@ -110,10 +115,10 @@ class Timer {
 			reset: root.querySelector(".timer__btn--reset"),
 		};
 
-		this.interval = 40; 
+		// this.interval = 40; 
 		this.remainingSeconds = 90; //in seconds
 
-		// this.updateInterfaceTime();
+		this.updateInterfaceTime();
 		this.updateInterfaceControls();
 
 		this.el.control.addEventListener("click", () => {
@@ -138,15 +143,16 @@ class Timer {
 	}
 
 	updateInterfaceControls (){
-		//TO DO: this isn't updating to the pause icon correctly
+		//TO DO: this isn't updating to the pause icon correctly???
 		//left off tutorial at 25:24
 		//https://www.youtube.com/watch?v=PIiMSMz7KzM
 		if (this.interval === null){
 			this.el.control.innerHTML = '<span class="material-icons">play_circle</span>';
 			this.el.control.classList.add("timer__btn--start");
 			this.el.control.classList.remove("timer__btn--stop");
-		} else { //WHERE I LEFT OFF: IMAGE REF IS THROWING AN ERROR
-			this.el.control.innerHTML = '<span class="material-icons">pause</span>';
+		} else { //WHERE I LEFT OFF: it seems to hate this whole Else section?
+			this.el.control.innerHTML = '<span class="material-icons">pause_circle</span>'; 
+
 			this.el.control.classList.add("timer__btn--stop");
 			this.el.control.classList.remove("timer__btn--start");
 
