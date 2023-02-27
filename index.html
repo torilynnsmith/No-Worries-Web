@@ -18,9 +18,6 @@
   </head>
   <!-- <body> -->
   <body onload="init()">
-    <!-- Javascript Links-->
-    <!-- <script src="messages.js"></script>
-    <script src="main.js">  </script> -->
 
     Experience Countdown Timer
     <div class="timer"> </div>
@@ -31,7 +28,7 @@
 
     <!-- Text Message Area -->
     <div class="phoneContainer">
-      <div class="phoneMessages">
+      <div class="phoneMessages" id="phoneBG">
 
         <!-- Incoming/Friend Name & Icon Formatting -->
         <div class="messageContainer">
@@ -76,6 +73,15 @@
       <button type="button" class="send__btn" onclick="returnText()" id="btnSend" >
         <span class="material-icons">arrow_upward</span>
       </button>
+      <script>
+        var enterBtn = document.getElementById("playerInputText");
+        enterBtn.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btnSend").click();
+          }
+        });
+      </script>
     </div>
     
   </body>

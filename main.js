@@ -20,10 +20,10 @@ function init(){
 		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
 		// messages.innerHTML += createMessage ("me", "No worries.", true);
 	
-	//Make the Timer
-	// new Timer(
-	// 	document.querySelector(".timer")
-	// )
+	// Make the Timer
+	new Timer(
+		document.querySelector(".timer")
+	)
 	// updateInterfaceTime();
 	// updateInterfaceControls();
 
@@ -75,6 +75,8 @@ function createMessage(character, text, isMe){
 //////////////////////////////////////////////////////////////////////////
 // //PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
+// var input = document.getElementById("playerInputText");
+
 var correctMessage = ["No Worries."]; 
 
 function returnText(){
@@ -97,15 +99,25 @@ function matchString(){
 	//TO DO: delete and retype text feature.
 	if (result===null){
 		messages.innerHTML += createMessage ("me", correctMessage, true);
+		updateScroll();
 	} else {
 		messages.innerHTML += createMessage ("me", correctMessage, true);
+		updateScroll();
 	}
 } 
+
+
+//NOTE: add this update scroll to the friend messages as well when attached to the timer intervals
+function updateScroll(){
+	window.scrollTo(0,document.body.scrollHeight);
+
+}
 
 //////////////////////////////////////////////////////////////////////////
 //TIMER STUFF
 class Timer {
 	
+	//Construct the Timer
     constructor (root){
         root.innerHTML = Timer.getHTML();
 
@@ -116,18 +128,34 @@ class Timer {
 			reset: root.querySelector(".timer__btn--reset"),
 		};
 
-		// this.interval = 40; 
-		this.remainingSeconds = 90; //in seconds
+		this.interval = null; 
+		this.remainingSeconds = 0; //in seconds (currently: 0 seconds)
+			//TO DO: Set timer for total experience to approx. 15 minutes
 
-		this.updateInterfaceTime();
-		this.updateInterfaceControls();
+		// this.updateInterfaceTime();
+		// this.updateInterfaceControls();
 
+		// this.start();
+		// this.stop(); 
+
+		//click button to start and stop timer
 		this.el.control.addEventListener("click", () => {
-			//To Do: add in tutorial code
+			if (this.interval === null) {
+				this.start();
+			} else {
+				this.stop();
+			}
 		})
 
 		this.el.reset.addEventListener("click", () => {
-			//To Do: add in tutorial code
+			const inputMinutes = prompt("Enter number of minutes:");
+
+			//if player submitted value is less than 60 minutes/1 hour
+			if (inputMinutes < 60){
+				this.stop();
+				this.remainingSeconds = inputMinutes * 60; //convert minutes to seconds
+				this.updateInterfaceTime(); 
+			}
 		})
 
     }
@@ -153,11 +181,36 @@ class Timer {
 			this.el.control.classList.remove("timer__btn--stop");
 		} else { //WHERE I LEFT OFF: it seems to hate this whole Else section?
 			this.el.control.innerHTML = '<span class="material-icons">pause_circle</span>'; 
-
 			this.el.control.classList.add("timer__btn--stop");
 			this.el.control.classList.remove("timer__btn--start");
 
 		}
+	}
+
+	start () {
+		if (this.remainingSeconds === 0) return;
+
+		//NOTE/REMEMBER FOR LATER: 
+		// setInterval function allows you to run code on a timer every x amount of milliseconds, probably helpful for sending the texts! 
+		this.interval = setInterval(() => {
+			this.remainingSeconds--; //remove 1 from current value
+			this.updateInterfaceTime();
+
+			//if timer reaches 0, stop the timer
+			if (this.remainingSeconds === 0) {
+				this.stop();
+			}
+		}, 1000); //every 1000 ms (1 second)
+
+		this.updateInterfaceControls(); //swap out buttons
+	}
+
+	stop () {
+		clearInterval(this.interval);
+
+		this.interval = null; 
+
+		this.updateInterfaceControls(); 
 	}
 
     static getHTML(){
