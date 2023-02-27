@@ -6,7 +6,7 @@ const data = {
         },
         {
             "name" : "Miranda",
-            "message" : "Oh man, this was tonight? I totally forgot and booked a gig.!"
+            "message" : "Oh man, this was tonight? I totally forgot and booked a gig!"
         },
         {
             "name" : "Becca",
