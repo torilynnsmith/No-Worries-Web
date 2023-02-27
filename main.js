@@ -21,9 +21,9 @@ function init(){
 		// messages.innerHTML += createMessage ("me", "No worries.", true);
 	
 	//Make the Timer
-	new Timer(
-		document.querySelector(".timer")
-	)
+	// new Timer(
+	// 	document.querySelector(".timer")
+	// )
 	// updateInterfaceTime();
 	// updateInterfaceControls();
 
@@ -32,8 +32,8 @@ function init(){
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
-//TO DO:
-	//LINK TO A TIMER
+
+//TO DO: LINK TO A TIMER
 function createMessage(character, text, isMe){
 	var output = "";
 	// Name & Icon Formatting
@@ -79,27 +79,28 @@ var correctMessage = ["No Worries."];
 
 function returnText(){
 	input = document.getElementById("playerInputText").value;
-	// localStorage.setItem('input',input);
-	// alert(input);
 
-	//create a player text message
-	//TO DO: check if it matches in matchString. if no, create the delete and retype message thing.
-	var messages = document.querySelector(".phoneMessages");
-	messages.innerHTML += createMessage ("me", correctMessage, true);
-	
-	//TO DO: How to reset the placeholder text?
-
+	//check if message matches "No Worries"
 	matchString(); 
+
+	//reset placeholder text to 'eMessage'
+	document.querySelector('.e-message').value = ''; 
 }
 
 //CHECK IF PLAYER INPUT MATCHES NO WORRIES
 function matchString(){
+	var messages = document.querySelector(".phoneMessages");
 	var result = input.match(/no worries/gi);
 	console.log ("Output : " + result);
 	console.log(input);
-} 
 
-// console.log(input);
+	//TO DO: delete and retype text feature.
+	if (result===null){
+		messages.innerHTML += createMessage ("me", correctMessage, true);
+	} else {
+		messages.innerHTML += createMessage ("me", correctMessage, true);
+	}
+} 
 
 //////////////////////////////////////////////////////////////////////////
 //TIMER STUFF

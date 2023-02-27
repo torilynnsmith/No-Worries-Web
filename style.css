@@ -35,7 +35,8 @@ body {
 	align-items: center;
 	flex-direction: column;
 	width: auto;
-	height: 125px;
+	/* The height property is being a little funky when the messages are longer than 1 line. */
+	height: 140px; 
 	color: black;
 	font-family: Helvetica Neue;
 

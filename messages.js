@@ -39,3 +39,12 @@ const data = {
         
     ]
 }
+
+const notif = {
+    "notifications": [
+        {
+            "alertName" : "Alert",
+            "alertMessage" : "Welcome to No Worries", 
+        }
+    ]
+}
