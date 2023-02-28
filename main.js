@@ -31,20 +31,19 @@ function init(){
 //Create Friend Messages every ??? seconds
 //TO DO: does this actually need to be linked to a timer? 
 let i = 0;
-console.log(i); 
 
 function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
 	
 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
 	i++; 
-	// console.log(i); 
 	updateScroll(); //scroll to bottom when new text is created
 }
 
 setInterval(function(){
 	makeFriendText();
-}, 5000) //1000 ms = 1 second, currently set to every 5 secs
+}, 5000) //1000 ms = 1 second, currently set to every 30 secs
+//TO DO: In game interval is every 30 seconds
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
@@ -144,30 +143,31 @@ class Timer {
 
 		this.interval = null; 
 		this.remainingSeconds = 15 * 60; //in seconds (currently: 15 minutes)
+		this.start(); //start Timer on page load
 
 		//click button to start and stop timer
 		//TO DO: Probably delete this as well? escape rooms don't stop the timer when providing hints. 
 		//OPTION: have a secret passcode for the player input field that brings up the play/pause and reset timer buttons
-		this.el.control.addEventListener("click", () => {
-			if (this.interval === null) {
-				this.start();
-			} else {
-				this.stop();
-			}
-		})
+		// this.el.control.addEventListener("click", () => {
+		// 	if (this.interval === null) {
+		// 		this.start();
+		// 	} else {
+		// 		this.stop();
+		// 	}
+		// })
 
 		//Set time amount with timer button
 		//TO DO: DELETE/HIDE THIS
-		this.el.reset.addEventListener("click", () => {
-			const inputMinutes = prompt("Enter number of minutes:");
+		// this.el.reset.addEventListener("click", () => {
+		// 	const inputMinutes = prompt("Enter number of minutes:");
 
-			//if player submitted value is less than 60 minutes/1 hour
-			if (inputMinutes < 60){
-				this.stop();
-				this.remainingSeconds = inputMinutes * 60; //convert minutes to seconds
-				this.updateInterfaceTime(); 
-			}
-		})
+		// 	//if player submitted value is less than 60 minutes/1 hour
+		// 	if (inputMinutes < 60){
+		// 		this.stop();
+		// 		this.remainingSeconds = inputMinutes * 60; //convert minutes to seconds
+		// 		this.updateInterfaceTime(); 
+		// 	}
+		// })
 
     }
 
@@ -208,7 +208,7 @@ class Timer {
 			}
 		}, 1000); //every 1000 ms (1 second)
 
-		this.updateInterfaceControls(); //swap out buttons
+		// this.updateInterfaceControls(); //swap out buttons
 	}
 
 	stop () {
@@ -216,7 +216,7 @@ class Timer {
 
 		this.interval = null; 
 
-		this.updateInterfaceControls(); 
+		// this.updateInterfaceControls(); 
 	}
 
     static getHTML(){
@@ -224,12 +224,17 @@ class Timer {
             <span class="timer__part timer__part--minutes">15</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--seconds">00</span>
-            <button type="button" class="timer__btn timer__btn--control timer__btn--start timer__part--control">
-                <span class="material-icons">play_circle</span>
-            </button>
-            <button type="button" class="timer__btn timer__btn--reset">
-            <span class="material-icons">timer</span>
-            </button>
         `;
+		// return `
+		// 	<span class="timer__part timer__part--minutes">15</span>
+		// 	<span class="timer__part">:</span>
+		// 	<span class="timer__part timer__part--seconds">00</span>
+		// 	<button type="button" class="timer__btn timer__btn--control timer__btn--start timer__part--control">
+		// 		<span class="material-icons">play_circle</span>
+		// 	</button>
+		// 	<button type="button" class="timer__btn timer__btn--reset">
+		// 	<span class="material-icons">timer</span>
+		// 	</button>
+		// `;
     }
 }
