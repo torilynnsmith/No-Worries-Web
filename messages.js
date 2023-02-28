@@ -44,7 +44,7 @@ const notif = {
     "notifications": [
         {
             "alertName" : "Alert",
-            "alertMessage" : "Welcome to No Worries", 
+            "alertMessage" : "Welcome to No Worries!", 
         }
     ]
 }

@@ -2,13 +2,13 @@
 function init(){
 	
 	//Make the friend messages on load
-	var messages = document.querySelector(".phoneMessages");
+	// var messages = document.querySelector(".phoneMessages");
 
-	for (var i = 0; i < data.messages.length; i++){
-		// console.log(data.messages[i].message);
-		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+	// for (var i = 0; i < data.messages.length; i++){
+	// 	// console.log(data.messages[i].message);
+	// 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
 
-	}
+	// }
 
 		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
 		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
@@ -24,16 +24,41 @@ function init(){
 	new Timer(
 		document.querySelector(".timer")
 	)
-	// updateInterfaceTime();
-	// updateInterfaceControls();
 
 
 }
+//////////////////////////////////////////////////////////////////////////
+//Make friend messages linked to Timer (will probably have to move this to after the Timer stuff below.)
+let i = 0;
+console.log(i); 
+
+function makeFriendText(){
+	var messages = document.querySelector(".phoneMessages");
+	
+	//this does exactly the same thing as the for loop below...still confused on how to get it to do one at a time, then move to the next one. 
+	while (i < data.messages.length) {
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+		i++; 
+	}
+	console.log(i); 
+
+	// 	//this is calling them all at once...
+	// for (let i = 0; i < data.messages.length; i++){
+	// 	// console.log(data.messages[i].message);
+	// 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+	// 	console.log(i); 
+	// }
+
+	updateScroll(); //scroll to bottom when new text is created
+}
+
+setInterval(function(){
+	makeFriendText();
+}, 5000) //1000 ms = 1 second, currently set to every 5 secs
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
 
-//TO DO: LINK TO A TIMER
 function createMessage(character, text, isMe){
 	var output = "";
 	// Name & Icon Formatting
@@ -75,7 +100,6 @@ function createMessage(character, text, isMe){
 //////////////////////////////////////////////////////////////////////////
 // //PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
-// var input = document.getElementById("playerInputText");
 
 var correctMessage = ["No Worries."]; 
 
@@ -132,12 +156,6 @@ class Timer {
 		this.remainingSeconds = 0; //in seconds (currently: 0 seconds)
 			//TO DO: Set timer for total experience to approx. 15 minutes
 
-		// this.updateInterfaceTime();
-		// this.updateInterfaceControls();
-
-		// this.start();
-		// this.stop(); 
-
 		//click button to start and stop timer
 		this.el.control.addEventListener("click", () => {
 			if (this.interval === null) {
@@ -147,6 +165,7 @@ class Timer {
 			}
 		})
 
+		//Set time amount with timer button
 		this.el.reset.addEventListener("click", () => {
 			const inputMinutes = prompt("Enter number of minutes:");
 
@@ -163,7 +182,6 @@ class Timer {
 	updateInterfaceTime(){
 		const minutes = Math.floor(this.remainingSeconds / 60);
 		const seconds = this.remainingSeconds % 60; 
-		// console.log(minutes, seconds);
 
 		//minutes & seconds must be at least 2 characters, if 2 characters doesn't exist, add a zero to the front. 
 		this.el.minutes.textContent = minutes.toString().padStart(2,"0");
@@ -172,14 +190,12 @@ class Timer {
 	}
 
 	updateInterfaceControls (){
-		//TO DO: this isn't updating to the pause icon correctly???
-		//left off tutorial at 25:24
 		//https://www.youtube.com/watch?v=PIiMSMz7KzM
-		if (this.interval === null){
+		if (this.interval === null){ //display play button
 			this.el.control.innerHTML = '<span class="material-icons">play_circle</span>';
 			this.el.control.classList.add("timer__btn--start");
 			this.el.control.classList.remove("timer__btn--stop");
-		} else { //WHERE I LEFT OFF: it seems to hate this whole Else section?
+		} else { //display pause button
 			this.el.control.innerHTML = '<span class="material-icons">pause_circle</span>'; 
 			this.el.control.classList.add("timer__btn--stop");
 			this.el.control.classList.remove("timer__btn--start");
