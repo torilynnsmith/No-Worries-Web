@@ -122,7 +122,9 @@ function matchString(){
 
 //NOTE: add this update scroll to the friend messages as well when attached to the timer intervals
 function updateScroll(){
-	window.scrollTo(0,document.body.scrollHeight);
+	var phoneWindowDiv = document.getElementById("phoneBG");
+	// window.scrollTo(0,document.body.scrollHeight); //scrolls to the bottom of the whole page
+	phoneWindowDiv.scrollTo(0,phoneWindowDiv.scrollHeight); //scrolls to the bottom of the div class
 
 }
 
