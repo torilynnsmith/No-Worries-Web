@@ -28,27 +28,17 @@ function init(){
 
 }
 //////////////////////////////////////////////////////////////////////////
-//Make friend messages linked to Timer (will probably have to move this to after the Timer stuff below.)
+//Create Friend Messages every ??? seconds
+//TO DO: does this actually need to be linked to a timer? 
 let i = 0;
 console.log(i); 
 
 function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
 	
-	//this does exactly the same thing as the for loop below...still confused on how to get it to do one at a time, then move to the next one. 
-	while (i < data.messages.length) {
-		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-		i++; 
-	}
-	console.log(i); 
-
-	// 	//this is calling them all at once...
-	// for (let i = 0; i < data.messages.length; i++){
-	// 	// console.log(data.messages[i].message);
-	// 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-	// 	console.log(i); 
-	// }
-
+	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+	i++; 
+	// console.log(i); 
 	updateScroll(); //scroll to bottom when new text is created
 }
 
@@ -153,10 +143,11 @@ class Timer {
 		};
 
 		this.interval = null; 
-		this.remainingSeconds = 0; //in seconds (currently: 0 seconds)
-			//TO DO: Set timer for total experience to approx. 15 minutes
+		this.remainingSeconds = 15 * 60; //in seconds (currently: 15 minutes)
 
 		//click button to start and stop timer
+		//TO DO: Probably delete this as well? escape rooms don't stop the timer when providing hints. 
+		//OPTION: have a secret passcode for the player input field that brings up the play/pause and reset timer buttons
 		this.el.control.addEventListener("click", () => {
 			if (this.interval === null) {
 				this.start();
@@ -166,6 +157,7 @@ class Timer {
 		})
 
 		//Set time amount with timer button
+		//TO DO: DELETE/HIDE THIS
 		this.el.reset.addEventListener("click", () => {
 			const inputMinutes = prompt("Enter number of minutes:");
 
@@ -206,8 +198,6 @@ class Timer {
 	start () {
 		if (this.remainingSeconds === 0) return;
 
-		//NOTE/REMEMBER FOR LATER: 
-		// setInterval function allows you to run code on a timer every x amount of milliseconds, probably helpful for sending the texts! 
 		this.interval = setInterval(() => {
 			this.remainingSeconds--; //remove 1 from current value
 			this.updateInterfaceTime();
@@ -230,9 +220,8 @@ class Timer {
 	}
 
     static getHTML(){
-		//FIXED! Time to reverse engineer to attach the messages
         return `
-            <span class="timer__part timer__part--minutes">00</span>
+            <span class="timer__part timer__part--minutes">15</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--seconds">00</span>
             <button type="button" class="timer__btn timer__btn--control timer__btn--start timer__part--control">
