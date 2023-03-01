@@ -42,7 +42,7 @@ function makeFriendText(){
 
 setInterval(function(){
 	makeFriendText();
-}, 5000) //1000 ms = 1 second, currently set to every 30 secs
+}, 30000) //1000 ms = 1 second, currently set to every 30 secs
 //TO DO: In game interval is every 30 seconds
 
 //////////////////////////////////////////////////////////////////////////
