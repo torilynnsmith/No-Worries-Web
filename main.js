@@ -1,41 +1,22 @@
 //initiate these functions OnLoad
 function init(){
 	
-	//Make the friend messages on load
-	// var messages = document.querySelector(".phoneMessages");
-
-	// for (var i = 0; i < data.messages.length; i++){
-	// 	// console.log(data.messages[i].message);
-	// 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-
-	// }
-
-		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		// messages.innerHTML += createMessage ("me", "No worries.", true);
-		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		// messages.innerHTML += createMessage ("me", "No worries.", true);
-		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		// messages.innerHTML += createMessage ("me", "No worries.", true);
-	
 	// Make the Timer
 	new Timer(
 		document.querySelector(".timer")
 	)
 
-
 }
 //////////////////////////////////////////////////////////////////////////
-//Create Friend Messages every ??? seconds
+//Create Friend Messages every 30 seconds
 //TO DO: does this actually need to be linked to a timer? 
 let i = 0;
 
 function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
 	
-	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, data.messages[i].name);
 	i++; 
 	updateScroll(); //scroll to bottom when new text is created
 }
@@ -48,26 +29,44 @@ setInterval(function(){
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
 
-function createMessage(character, text, isMe){
+function createMessage(character, text, characterName){
 	var output = "";
 	// Name & Icon Formatting
 	output += '<div class="messageContainer">'
 
-	if (isMe===true){ // If a Player Text
+	if (characterName === "Me"){ // If a Player Text
 		//Container
 		output += '<div class="namePlayer">';
 		//Character Name
 		output += '<p class="nameText">';
-		output += character;
+		output += characterName;
 		output += '</p>';
 		//Icon
 		output += '<img class = "iconPlayer" src ="http://placekitten.com/30/30">';	
 	} 
+
+	//FREE AVATAR PLACEHOLDER LINK= https://pravatar.cc
+	//Becca = 30, Miranda = 49, Yvonne = 38, Layne = 25, Kennedy = 48, Mom = 22, else = 24
 	else { // If a Friend Text
 		//Container
 		output += '<div class="nameFriend">';
-		//Icon
-		output += '<img class = "iconFriend" src ="http://placekitten.com/30/30">';	
+		//Icon, associate with Character Name
+		if (characterName === "Becca"){
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=30">';	
+		} else if (characterName === "Miranda"){
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=49">';	
+		} else if (characterName === "Yvonne"){
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=38">';	
+		} else if (characterName === "Layne"){
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=25">';	
+		} else if (characterName === "Kennedy"){
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=48">';	
+		} else if (characterName === "Mom"){
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=22">';	
+		}
+		else {
+			output += '<img class = "iconFriend" src ="https://i.pravatar.cc/150?img=24">';	
+		}
 		//Print Character Name
 		output += '<p class="nameText">';
 		output += character;
@@ -111,10 +110,10 @@ function matchString(){
 
 	//TO DO: delete and retype text feature.
 	if (result===null){
-		messages.innerHTML += createMessage ("me", correctMessage, true);
+		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		updateScroll();
 	} else {
-		messages.innerHTML += createMessage ("me", correctMessage, true);
+		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		updateScroll();
 	}
 } 
@@ -240,3 +239,24 @@ class Timer {
 		// `;
     }
 }
+
+//EXTRA STUFF
+
+	//Make all the friend messages on load
+	// var messages = document.querySelector(".phoneMessages");
+
+	// for (var i = 0; i < data.messages.length; i++){
+	// 	// console.log(data.messages[i].message);
+	// 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
+
+	// }
+
+		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
+		// messages.innerHTML += createMessage ("me", "No worries.", true);
+		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
+		// messages.innerHTML += createMessage ("me", "No worries.", true);
+		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
+		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
+		// messages.innerHTML += createMessage ("me", "No worries.", true);
