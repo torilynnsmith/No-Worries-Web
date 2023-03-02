@@ -35,7 +35,23 @@ const data = {
         {
             "name" : "Kennedy",
             "message" : "Woah, sorry, just saw this. Got way too high and fell asleep."
-        }
+        },
+        {
+            "name" : "Becca",
+            "message" : "Sorry I couldn't come!"
+        },
+        {
+            "name" : "Becca",
+            "message" : "Are you mad at me?"
+        },
+        {
+            "name" : "Becca",
+            "message" : "Please don't be mad at me."
+        },
+        {
+            "name" : "Mom",
+            "message" : "Hey hun! Happy birthday, sent you a little something! Check outside! <3 Mom"
+        },
         
     ]
 }

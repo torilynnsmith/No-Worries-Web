@@ -144,7 +144,7 @@ class Timer {
 		};
 
 		this.interval = null; 
-		this.remainingSeconds = 15 * 60; //in seconds (currently: 15 minutes)
+		this.remainingSeconds = 10 * 60; //in seconds (currently: 10 minutes)
 		this.start(); //start Timer on page load
 
 		//click button to start and stop timer
@@ -223,7 +223,7 @@ class Timer {
 
     static getHTML(){
         return `
-            <span class="timer__part timer__part--minutes">15</span>
+            <span class="timer__part timer__part--minutes">10</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--seconds">00</span>
         `;
