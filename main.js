@@ -11,6 +11,8 @@ function init(){
 //Create Friend Messages every 30 seconds
 //TO DO: does this actually need to be linked to a timer? 
 let i = 0;
+friendInterval = null; 
+//currently linked to timer?
 
 function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
@@ -21,10 +23,7 @@ function makeFriendText(){
 	updateScroll(); //scroll to bottom when new text is created
 }
 
-setInterval(function(){
-	makeFriendText();
-}, 30000) //1000 ms = 1 second, currently set to every 30 secs
-//TO DO: In game interval is every 30 seconds
+
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
@@ -98,25 +97,49 @@ function returnText(){
 	matchString(); 
 
 	//reset placeholder text to 'eMessage'
-	document.querySelector('.e-message').value = ''; 
+	document.querySelector('.e-message').value = ''; //why is this line breaking?
 }
 
 //CHECK IF PLAYER INPUT MATCHES NO WORRIES
 function matchString(){
 	var messages = document.querySelector(".phoneMessages");
 	var result = input.match(/no worries/gi);
+		//NOTE: currently, as long as the message includes "no worries", it will register as correct.
+		//Need to update this so that it will check more exactly?
+		//Perhaps with a version of index() or 
 	console.log ("Output : " + result);
 	console.log(input);
 
 	//TO DO: delete and retype text feature.
 	if (result===null){
+		//TO DO: Call retyping function
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		updateScroll();
 	} else {
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		updateScroll();
 	}
+
+	// var result = input.startsWith("no worries");
+	// //NOTE: THIS IS MORE EXACT, HOWEVER, it's breaking at line 100? 
+	// //REVISIT THIS
+	// //Need to update this so that it will check more exactly?
+	// //Perhaps with a version of index() or 
+	// console.log ("Output : " + result);
+	// console.log(input);
+
+	// //TO DO: delete and retype text feature.
+	// if (result === true){
+	// 	//TO DO: Call retyping function
+	// 	messages.innerHTML += createMessage ("me", correctMessage, "Me");
+	// 	updateScroll();
+	// } else {
+	// 	messages.innerHTML += createMessage ("me", correctMessage, "Me");
+	// 	updateScroll();
+	// }
 } 
+
+//TO DO: add play/pause/and restart timer password functionallity
 
 
 //NOTE: add this update scroll to the friend messages as well when attached to the timer intervals
@@ -209,13 +232,27 @@ class Timer {
 			}
 		}, 1000); //every 1000 ms (1 second)
 
+		friendInterval = setInterval(() =>{
+			makeFriendText();
+			console.log(i); 
+			if (i >= data.messages.length) {
+				clearInterval(friendInterval);
+			}
+
+		}, 1000) //1000 ms = 1 second, currently set to every 30 secs
+		//NOTE: Ideal in-game interval is every 30 seconds
+		//NOTE: setInterval calls repeatedly vs. setTimeout does something once. (might be useful for blocking player input?)
+		//TO DO: How to pause the friend texts alongside the timer. 
+
 		// this.updateInterfaceControls(); //swap out buttons
 	}
 
 	stop () {
 		clearInterval(this.interval);
+		clearInterval(friendInterval); 
 
 		this.interval = null; 
+		friendInterval = null; 
 
 		// this.updateInterfaceControls(); 
 	}
