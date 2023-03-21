@@ -85,7 +85,7 @@ function createMessage(character, text, characterName){
 }
 
 //////////////////////////////////////////////////////////////////////////
-// //PLAYER TEXT INPUT
+//PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
 
 var correctMessage = ["No Worries."]; 
@@ -97,52 +97,63 @@ function returnText(){
 	matchString(); 
 
 	//reset placeholder text to 'eMessage'
-	document.querySelector('.e-message').value = ''; //why is this line breaking?
+	document.querySelector('.e-message').value = '';
 }
 
-//CHECK IF PLAYER INPUT MATCHES NO WORRIES
+//CHECK IF PLAYER TEXT MESSAGE INPUT MATCHES NO WORRIES
 function matchString(){
+	// var correctString = "no worries"; (9, 0-9 or 10 characters total)
 	var messages = document.querySelector(".phoneMessages");
-	var result = input.match(/no worries/gi);
-		//NOTE: currently, as long as the message includes "no worries", it will register as correct.
-		//Need to update this so that it will check more exactly?
-		//Perhaps with a version of index() or 
-	console.log ("Output : " + result);
+	var resultTot = input.match(/no worries/gi); //check if input contains "no worries"
+
+	var resultStart = input.toLocaleLowerCase().startsWith("no worries"); //check if input starts with "no worries"
+	var resultEnd = input.toLocaleLowerCase().endsWith("no worries"); //check if input ends with "no worries"
+	//TO DO: update to include punctuation (.,?)
+	//Tried adding in a second parameter to specify an endPosition to search, but that's too specific and turns phrases up incorrectly.
+	//NOTE: GET DANNY HELP HERE! 
+
+	console.log ("resultTot Output : " + resultTot);
+	console.log ("resultStart Output : " + resultStart);
+	console.log ("resultEnd Output : " + resultEnd);
 	console.log(input);
 
-	//TO DO: delete and retype text feature.
-	if (result===null){
+	if (resultTot===null){ 
+		//INCORRECT: the phrase "no worries" does not exist in the string at all
 		//TO DO: Call retyping function
+
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
+		console.log ("INCORRECT: no worries not contained at all.");
+		console.log ("resultTot Output : " + resultTot)
 		updateScroll();
-	} else {
+		//TO DO: delete and retype text feature.
+
+	} else { //CORRECT: input contains "no worries" and only "no worries"
+		if (resultStart === true && resultEnd === true){ 
+			//CORRECT: input contains "no worries" and only "no worries"
+			//the phrase "no worries" is in the string at the start and the end with NOTHING ELSE
+
+			//TO DO: Call retyping function
+			
+			messages.innerHTML += createMessage ("me", correctMessage, "Me");
+			console.log ("CORRECT: 'no worries' contained at start & end, only.");
+			// console.log ("resultStart Output : " + resultStart);
+			// console.log ("resultEnd Output : " + resultEnd);
+			updateScroll();
+
+		} else {
+		//INCORRECT: "no worries" not at start and end of message
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
+		console.log ("INCORRECT: 'no worries' not at start & end.");
+		// console.log ("resultTot Output : " + resultTot);
 		updateScroll();
+		//TO DO: delete and retype text feature.
+		}
 	}
-
-	// var result = input.startsWith("no worries");
-	// //NOTE: THIS IS MORE EXACT, HOWEVER, it's breaking at line 100? 
-	// //REVISIT THIS
-	// //Need to update this so that it will check more exactly?
-	// //Perhaps with a version of index() or 
-	// console.log ("Output : " + result);
-	// console.log(input);
-
-	// //TO DO: delete and retype text feature.
-	// if (result === true){
-	// 	//TO DO: Call retyping function
-	// 	messages.innerHTML += createMessage ("me", correctMessage, "Me");
-	// 	updateScroll();
-	// } else {
-	// 	messages.innerHTML += createMessage ("me", correctMessage, "Me");
-	// 	updateScroll();
-	// }
 } 
 
 //TO DO: add play/pause/and restart timer password functionallity
 
 
-//NOTE: add this update scroll to the friend messages as well when attached to the timer intervals
 function updateScroll(){
 	var phoneWindowDiv = document.getElementById("phoneBG");
 	// window.scrollTo(0,document.body.scrollHeight); //scrolls to the bottom of the whole page
@@ -239,7 +250,7 @@ class Timer {
 				clearInterval(friendInterval);
 			}
 
-		}, 1000) //1000 ms = 1 second, currently set to every 30 secs
+		}, 5000) //1000 ms = 1 second, currently set to every 30 secs
 		//NOTE: Ideal in-game interval is every 30 seconds
 		//NOTE: setInterval calls repeatedly vs. setTimeout does something once. (might be useful for blocking player input?)
 		//TO DO: How to pause the friend texts alongside the timer. 
@@ -278,22 +289,3 @@ class Timer {
 }
 
 //EXTRA STUFF
-
-	//Make all the friend messages on load
-	// var messages = document.querySelector(".phoneMessages");
-
-	// for (var i = 0; i < data.messages.length; i++){
-	// 	// console.log(data.messages[i].message);
-	// 	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-
-	// }
-
-		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		// messages.innerHTML += createMessage ("me", "No worries.", true);
-		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		// messages.innerHTML += createMessage ("me", "No worries.", true);
-		// messages.innerHTML += createMessage ("becca", "hi this is Becca.", false);
-		// messages.innerHTML += createMessage ("miranda", "hi this is Miranda.", false);
-		// messages.innerHTML += createMessage ("me", "No worries.", true);
