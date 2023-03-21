@@ -88,6 +88,10 @@ function createMessage(character, text, characterName){
 //PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
 
+//TRY TO REMOVE ALL PUNCTION FROM INPUT
+// var inputNoPunct = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s{2,}/g, " ");
+// console.log(inputNoPunct);
+
 var correctMessage = ["No Worries."]; 
 
 function returnText(){
