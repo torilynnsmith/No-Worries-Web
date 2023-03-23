@@ -59,8 +59,20 @@ const data = {
 const notif = {
     "notifications": [
         {
-            "alertName" : "Alert",
+            "alertName" : "Notification",
             "alertMessage" : "Welcome to No Worries!", 
-        }
+        },
+        {
+            "alertName" : "Notification",
+            "alertMessage" : "This is a notification message with some text.", 
+        },
+        {
+            "alertName" : "Calendar",
+            "alertMessage" : "This is a CALENDAR notification message with some text.", 
+        },
+        {
+            "alertName" : "Reminder",
+            "alertMessage" : "This is a REMINDER notification message with some text to remind you of something.", 
+        },
     ]
 }

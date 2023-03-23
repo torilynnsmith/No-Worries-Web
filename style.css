@@ -29,14 +29,18 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	/* margin: auto;  */
+	position: absolute;
+	top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%);
 	width: auto;
 	font-family: Helvetica Neue;
-	padding-bottom: 15px; 
 	z-index: 1;
 
 }
 
-.notifMessage {/*Pop Up Notifcation Box Formatting*/
+.notifMessage {/*Pop Up Notifcation Message Box Formatting*/
 	/* background-color: lightgray; */
 	background-color: aqua;
 	/* aqua color for testing purposes only */
@@ -50,20 +54,16 @@ body {
 
 }
 
-.notifName {/*Notification Name/Title Formatting*/
+.notifHeader {/*Notification Header Formatting*/
 	display: flex;
 	align-items: center;
 	height: 40px;
-	color: black;
+	/* color: black;
 	font-family: Helvetica Neue;
-	font-weight: bold;
+	font-weight: bold; */
 
 	/* NOTE: can add a subclass (like .me) to this to make it be a calendar, instructions, etc.  */
 
-}
-
-.notifMessageText {/*Notification Message Content Formatting*/
-	margin: 0px 0px 15px;
 }
 
 .iconNotif {/*Notification Icon Formatting*/
@@ -73,7 +73,37 @@ body {
 	border-radius: 50%;
 }
 
+.notifNameText {
+	display: flex;
+	margin: 0px;
+	/* justify-content: left; */
+	align-items: center;
+	color: black;
+	font-family: Helvetica Neue;
+	font-weight: bold;
+}
+
+.timeRec {/*Notification Time Received Formatting (will always say now)*/
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	/* width: 300px; */
+	/* height: 40px; */
+	margin-left: 130px;
+	color: black;
+	font-family: Helvetica Neue;
+	
+}
+
+.notifMessageText {/*Notification Message Content Formatting*/
+	margin: 0px 0px 15px;
+}
+
 .show{
+	visibility: visible;
+}
+
+.dismiss{
 	visibility: hidden;
 }
 
@@ -90,14 +120,13 @@ body {
 	overflow-y: scroll;
 }
 
-.phoneMessages { /*Overall Phone Message Screen Backgroundt*/
+.phoneMessages { /*Overall Phone Message Screen Background*/
 	display: flex;
 	align-content: flex-start;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	width: auto;
 	padding: 10px;
-	/* NOTE: Remember this z-index property for the notification messages!  */
 	z-index: -1;
 
 }

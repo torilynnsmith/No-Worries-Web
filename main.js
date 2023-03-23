@@ -11,7 +11,7 @@ function init(){
 //Create Friend Messages every 30 seconds
 let i = 0;
 friendInterval = null; 
-//currently linked the timer
+//currently linked to the Timer (See Timer Section) 
 
 function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
@@ -21,8 +21,6 @@ function makeFriendText(){
 	i++; 
 	updateScroll(); //scroll to bottom when new text is created
 }
-
-
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
@@ -72,7 +70,7 @@ function createMessage(character, text, characterName){
 	}
 	output += '</div>';
 
-	// Text Message Content Formatting
+	//Text Message Content Formatting
 	//Container
 	output += '<div class="messageIncoming ' + character +'">'
 	//Print Text
@@ -87,7 +85,7 @@ function createMessage(character, text, characterName){
 //PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
 
-//TRY TO REMOVE ALL PUNCTION FROM INPUT
+//TRY TO REMOVE ALL PUNCTUATION FROM INPUT
 // var inputNoPunct = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s{2,}/g, " ");
 // console.log(inputNoPunct);
 
@@ -114,6 +112,7 @@ function matchString(){
 	//TO DO: update to include punctuation (.,?)
 	//Tried adding in a second parameter to specify an endPosition to search, but that's too specific and turns phrases up incorrectly.
 	//NOTE: GET DANNY HELP HERE! 
+	//TO DO: create passwords for starting an stopping the timer for facilitator if needed 
 
 	console.log ("resultTot Output : " + resultTot);
 	console.log ("resultStart Output : " + resultStart);
@@ -165,10 +164,84 @@ function updateScroll(){
 }
 
 //////////////////////////////////////////////////////////////////////////
-//POP UP NOTIFICATION
+//POP UP NOTIFICATIONS
+
+//WHERE I LEFT OFF: Getting the dismiss toggle to work with the new messages, as they only show up when the "show" class is enabled on them currently
+//THOUGHT: Do we just reuse the same notification bubble and replace the text within it for the set intervals
+//OR create a new notification everytime? 
+
+//Create Popup Notifcation
+let n = 0;
+notifInterval = null; 
+//currently linked to the timer (see timer section below/setInterval section)
+
+function makePopUp(){ //see makeFriendText() for example 
+	var popUp = document.querySelector(".notifContainer");
+
+	popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage);
+	n++; 
+}
+
+function createNotif(notifType, notifText){ //see createMessage() for example 
+	var notifOutput = "";
+	// notifOutput += '<div class="notifContainer show" id="popupNotif">'
+	notifOutput += '<div class="notifContainer" id="popupNotif">'
+
+	notifOutput += '<div class="notifMessage" onclick="dismissNotif()">'
+	//Header Container
+	notifOutput += '<div class ="notifHeader">';
+	//Notif Icon, associate with alertName
+	notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
+	//Notif Name Text, associate with alertName
+	notifOutput += '<p class="notifNameText">';
+	notifOutput += notifType; 
+	notifOutput += '</p>';
+
+	//TO DO: differentiate between Notifcation Types to make different images icons, etc. 
+	// if (notifType === "Notification"){ //If a "Notification Text"
+	// 	//Header Container
+	// 	notifOutput += '<div class ="notifHeader">';
+	// 	//Notif Icon, associate with alertName
+	// 	notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
+	// 	//Notif Name Text, associate with alertName
+	// 	notifOutput += '<p class="notifNameText">';
+	// 	notifOutput += notifType; 
+	// 	notifOutput += '</p>';
+	// } else {
+	// 	//Header Container
+	// 	notifOutput += '<div class ="notifHeader">';
+	// 	//Notif Icon, associate with alertName
+	// 	notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
+	// 	//Notif Name Text, associate with alertName
+	// 	notifOutput += '<p class="notifNameText">';
+	// 	notifOutput += notifType; 
+	// 	notifOutput += '</p>';
+	// }
+
+	notifOutput += '<p class="timeRec">';
+	notifOutput += 'now';
+	notifOutput += '</p></div>';
+
+	//Notification Message Text Content Formatting
+	//Container/Print Text
+	notifOutput += '<p class="notifMessageText">';
+	notifOutput += notifText; 
+	notifOutput += '</p></div></div>';
+
+	return notifOutput;
+}
+
+//Dismiss Popup Notification
 function dismissNotif(){
 	var popup = document.getElementById("popupNotif");
+	// if (popup.style.display === "none"){
+	// 	popup.style.display = "block";
+	// } else {
+	// 	popup.style.display = "none"; 
+	// }
 	popup.classList.toggle("show"); 
+	// popup.classList.toggle("dismiss"); 
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -266,6 +339,14 @@ class Timer {
 		//TO DO: How to pause the friend texts alongside the timer. 
 
 		// this.updateInterfaceControls(); //swap out buttons
+		notifInterval = setInterval(() =>{
+			makePopUp();
+			console.log(n); 
+			if (n >= notif.notifications.length) {
+				clearInterval(notifInterval);
+			}
+
+		}, 6000) //currently set to every 6 secs. 
 	}
 
 	stop () {
