@@ -9,10 +9,9 @@ function init(){
 }
 //////////////////////////////////////////////////////////////////////////
 //Create Friend Messages every 30 seconds
-//TO DO: does this actually need to be linked to a timer? 
 let i = 0;
 friendInterval = null; 
-//currently linked to timer?
+//currently linked the timer
 
 function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
