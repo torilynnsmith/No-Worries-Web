@@ -185,9 +185,12 @@ function makePopUp(){ //see makeFriendText() for example
 function createNotif(notifType, notifText){ //see createMessage() for example 
 	var notifOutput = "";
 	// notifOutput += '<div class="notifContainer show" id="popupNotif">'
-	notifOutput += '<div class="notifContainer" id="popupNotif">'
+	// notifOutput += '<div class="notifContainer" id="popupNotif">'
+	notifOutput += '<div class="notifContainer">'
 
-	notifOutput += '<div class="notifMessage" onclick="dismissNotif()">'
+	// notifOutput += '<div class="notifMessage" onclick="dismissNotif()">'
+	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
+
 	//Header Container
 	notifOutput += '<div class ="notifHeader">';
 	//Notif Icon, associate with alertName
@@ -233,14 +236,9 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 
 //Dismiss Popup Notification
 function dismissNotif(){
-	var popup = document.getElementById("popupNotif");
-	// if (popup.style.display === "none"){
-	// 	popup.style.display = "block";
-	// } else {
-	// 	popup.style.display = "none"; 
-	// }
-	popup.classList.toggle("show"); 
-	// popup.classList.toggle("dismiss"); 
+	var dismissable = document.getElementById("popupNotif");
+	// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
+	dismissable.remove();
 
 }
 
@@ -328,7 +326,7 @@ class Timer {
 
 		friendInterval = setInterval(() =>{
 			makeFriendText();
-			console.log(i); 
+			console.log("friend text length " + i); 
 			if (i >= data.messages.length) {
 				clearInterval(friendInterval);
 			}
@@ -341,12 +339,12 @@ class Timer {
 		// this.updateInterfaceControls(); //swap out buttons
 		notifInterval = setInterval(() =>{
 			makePopUp();
-			console.log(n); 
+			console.log("notif mes length " + n); 
 			if (n >= notif.notifications.length) {
 				clearInterval(notifInterval);
 			}
 
-		}, 6000) //currently set to every 6 secs. 
+		}, 10000) //currently set to every 10 secs. 
 	}
 
 	stop () {
@@ -355,6 +353,7 @@ class Timer {
 
 		this.interval = null; 
 		friendInterval = null; 
+		notifInterval = null; 
 
 		// this.updateInterfaceControls(); 
 	}

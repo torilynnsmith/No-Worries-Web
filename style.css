@@ -41,8 +41,8 @@ body {
 }
 
 .notifMessage {/*Pop Up Notifcation Message Box Formatting*/
-	/* background-color: lightgray; */
-	background-color: aqua;
+	background-color: darkgray;
+	/* background-color: aqua; */
 	/* aqua color for testing purposes only */
 	opacity: .8;
 	padding: 0px 10px 0px; 
