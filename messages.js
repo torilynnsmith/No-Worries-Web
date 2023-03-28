@@ -60,19 +60,28 @@ const notif = {
     "notifications": [
         {
             "alertName" : "Notification",
-            "alertMessage" : "Welcome to No Worries!", 
-        },
-        {
-            "alertName" : "Notification",
-            "alertMessage" : "This is a notification message with some text.", 
+            "alertMessage" : "Welcome to No Worries! Tap this message to dismiss.", 
         },
         {
             "alertName" : "Calendar",
-            "alertMessage" : "This is a CALENDAR notification message with some text.", 
+            "alertMessage" : "Your birthday party is going to start soon! Your friends are on the way and will be arriving any minute now. Tidy up, organize, and decorate your Living Room before your friends arrive!", 
         },
         {
             "alertName" : "Reminder",
             "alertMessage" : "This is a REMINDER notification message with some text to remind you of something.", 
         },
+        {
+            "alertName" : "Calendar",
+            "alertMessage" : "Let's get this party started!", 
+        },
+        {
+            "alertName" : "Calendar",
+            "alertMessage" : "Party cancelled. Clean up before you go to bed.", 
+        },
+        {
+            "alertName" : "Calendar",
+            "alertMessage" : "Happy Birthday!", 
+        },
+
     ]
 }

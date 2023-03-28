@@ -101,6 +101,38 @@ function returnText(){
 	document.querySelector('.e-message').value = '';
 }
 
+//RETYPING FEATURE
+//TO DO: MAKE THIS
+function autoType(){
+	console.log ("Autotype called. " + input); 
+
+	//reset placeholder text to 'eMessage'
+	// document.querySelector('.e-message').value = '';
+
+	//leave placeholder text as the input
+	document.querySelector('.e-message').value = input;
+
+	//NOTE THIS FOLLOWING SECTION OF CODE, I THINK THIS IS CLOSE, JUST NEEDS MODIFICATION
+	// https://codepen.io/tommydunn/pen/WEZNLq
+
+	// TxtRotate.prototype.tick = function() {
+	// 	var i = this.loopNum % this.toRotate.length;
+	// 	var fullTxt = this.toRotate[i];
+	  
+	// 	if (this.isDeleting) {
+	// 	  this.txt = fullTxt.substring(0, this.txt.length - 1);
+	// 	} else {
+	// 	  this.txt = fullTxt.substring(0, this.txt.length + 1);
+	// 	}
+
+	//THOUGHTS: if the input is incorrect, 
+	//I can save the user input content and length, 
+	//then re-enter it minus one character at a time to make it look like it's deleting
+	//until the count is back to zero.
+	//THEN, I can do the same in reverse with "no worries" + whatever punctuation they ended with, if any.
+
+}
+
 //CHECK IF PLAYER TEXT MESSAGE INPUT MATCHES NO WORRIES
 function matchString(){
 	// var correctString = "no worries"; (9, 0-9 or 10 characters total)
@@ -109,19 +141,21 @@ function matchString(){
 
 	var resultStart = input.toLocaleLowerCase().startsWith("no worries"); //check if input starts with "no worries"
 	var resultEnd = input.toLocaleLowerCase().endsWith("no worries"); //check if input ends with "no worries"
+	
 	//TO DO: update to include punctuation (.,?)
 	//Tried adding in a second parameter to specify an endPosition to search, but that's too specific and turns phrases up incorrectly.
 	//NOTE: GET DANNY HELP HERE! 
 	//TO DO: create passwords for starting an stopping the timer for facilitator if needed 
 
-	console.log ("resultTot Output : " + resultTot);
-	console.log ("resultStart Output : " + resultStart);
-	console.log ("resultEnd Output : " + resultEnd);
+	// console.log ("resultTot Output : " + resultTot);
+	// console.log ("resultStart Output : " + resultStart);
+	// console.log ("resultEnd Output : " + resultEnd);
 	console.log(input);
 
 	if (resultTot===null){ 
 		//INCORRECT: the phrase "no worries" does not exist in the string at all
 		//TO DO: Call retyping function
+		autoType(); 
 
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		console.log ("INCORRECT: no worries not contained at all.");
@@ -133,13 +167,15 @@ function matchString(){
 		if (resultStart === true && resultEnd === true){ 
 			//CORRECT: input contains "no worries" and only "no worries"
 			//the phrase "no worries" is in the string at the start and the end with NOTHING ELSE
-
-			//TO DO: Call retyping function
 			
 			messages.innerHTML += createMessage ("me", correctMessage, "Me");
 			console.log ("CORRECT: 'no worries' contained at start & end, only.");
 			// console.log ("resultStart Output : " + resultStart);
 			// console.log ("resultEnd Output : " + resultEnd);
+			
+			//reset placeholder text to 'eMessage'
+			document.querySelector('.e-message').value = '';
+
 			updateScroll();
 
 		} else {
@@ -147,8 +183,10 @@ function matchString(){
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		console.log ("INCORRECT: 'no worries' not at start & end.");
 		// console.log ("resultTot Output : " + resultTot);
+		//TO DO: Call retyping function
+		autoType(); 
+
 		updateScroll();
-		//TO DO: delete and retype text feature.
 		}
 	}
 } 
@@ -166,14 +204,11 @@ function updateScroll(){
 //////////////////////////////////////////////////////////////////////////
 //POP UP NOTIFICATIONS
 
-//WHERE I LEFT OFF: Getting the dismiss toggle to work with the new messages, as they only show up when the "show" class is enabled on them currently
-//THOUGHT: Do we just reuse the same notification bubble and replace the text within it for the set intervals
-//OR create a new notification everytime? 
-
 //Create Popup Notifcation
 let n = 0;
-notifInterval = null; 
-//currently linked to the timer (see timer section below/setInterval section)
+notifMakeInterval = null; 
+notifDeleteInterval = null; 
+//nothing is actually currently linked to the timer (see timer section below/setInterval section)
 
 function makePopUp(){ //see makeFriendText() for example 
 	var popUp = document.querySelector(".notifContainer");
@@ -184,42 +219,47 @@ function makePopUp(){ //see makeFriendText() for example
 
 function createNotif(notifType, notifText){ //see createMessage() for example 
 	var notifOutput = "";
-	// notifOutput += '<div class="notifContainer show" id="popupNotif">'
-	// notifOutput += '<div class="notifContainer" id="popupNotif">'
 	notifOutput += '<div class="notifContainer">'
-
-	// notifOutput += '<div class="notifMessage" onclick="dismissNotif()">'
 	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
 
-	//Header Container
-	notifOutput += '<div class ="notifHeader">';
-	//Notif Icon, associate with alertName
-	notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
-	//Notif Name Text, associate with alertName
-	notifOutput += '<p class="notifNameText">';
-	notifOutput += notifType; 
-	notifOutput += '</p>';
-
 	//TO DO: differentiate between Notifcation Types to make different images icons, etc. 
-	// if (notifType === "Notification"){ //If a "Notification Text"
-	// 	//Header Container
-	// 	notifOutput += '<div class ="notifHeader">';
-	// 	//Notif Icon, associate with alertName
-	// 	notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
-	// 	//Notif Name Text, associate with alertName
-	// 	notifOutput += '<p class="notifNameText">';
-	// 	notifOutput += notifType; 
-	// 	notifOutput += '</p>';
-	// } else {
-	// 	//Header Container
-	// 	notifOutput += '<div class ="notifHeader">';
-	// 	//Notif Icon, associate with alertName
-	// 	notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
-	// 	//Notif Name Text, associate with alertName
-	// 	notifOutput += '<p class="notifNameText">';
-	// 	notifOutput += notifType; 
-	// 	notifOutput += '</p>';
-	// }
+	if (notifType === "Notification"){ //If a "Notification Text"
+		//Header Container
+		notifOutput += '<div class ="notifHeader">';
+		//Notif Icon, associate with alertName
+		notifOutput += '<span class="material-icons">notifications</span>'
+		//Notif Name Text, associate with alertName
+		notifOutput += '<p class="notifNameText">';
+		notifOutput += notifType; 
+		notifOutput += '</p>';
+	} else if (notifType === "Calendar") { //Create Calendar Notification
+		//Header Container
+		notifOutput += '<div class ="notifHeader">';
+		//Notif Icon, associate with alertName
+		notifOutput += '<span class="material-icons">event</span>'
+		//Notif Name Text, associate with alertName
+		notifOutput += '<p class="notifNameText">';
+		notifOutput += notifType; 
+		notifOutput += '</p>';
+	} else if (notifType === "Reminder") { //Create Reminder Notification
+		//Header Container
+		notifOutput += '<div class ="notifHeader">';
+		//Notif Icon, associate with alertName
+		notifOutput += '<span class="material-icons">priority_high</span>'
+		//Notif Name Text, associate with alertName
+		notifOutput += '<p class="notifNameText">';
+		notifOutput += notifType; 
+		notifOutput += '</p>';
+	}else {
+		//Header Container
+		notifOutput += '<div class ="notifHeader">';
+		//Notif Icon, associate with alertName
+		notifOutput += '<img class = "iconNotif" src ="http://placekitten.com/30/30">';
+		//Notif Name Text, associate with alertName
+		notifOutput += '<p class="notifNameText">';
+		notifOutput += notifType; 
+		notifOutput += '</p>';
+	}
 
 	notifOutput += '<p class="timeRec">';
 	notifOutput += 'now';
@@ -235,6 +275,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 }
 
 //Dismiss Popup Notification
+//TO DO: Clean Up AutoDismissal (see notifDeleteInterval lines)
 function dismissNotif(){
 	var dismissable = document.getElementById("popupNotif");
 	// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
@@ -326,7 +367,7 @@ class Timer {
 
 		friendInterval = setInterval(() =>{
 			makeFriendText();
-			console.log("friend text length " + i); 
+			// console.log("friend text length " + i); 
 			if (i >= data.messages.length) {
 				clearInterval(friendInterval);
 			}
@@ -337,14 +378,27 @@ class Timer {
 		//TO DO: How to pause the friend texts alongside the timer. 
 
 		// this.updateInterfaceControls(); //swap out buttons
-		notifInterval = setInterval(() =>{
+
+		//Make next Notifcation after certain Interval
+		notifMakeInterval = setInterval(() =>{
 			makePopUp();
-			console.log("notif mes length " + n); 
+			// console.log("notif mes length " + n); 
 			if (n >= notif.notifications.length) {
-				clearInterval(notifInterval);
+				clearInterval(notifMakeInterval);
 			}
 
 		}, 10000) //currently set to every 10 secs. 
+
+		//Dismiss Notification after 5 seconds if not manually dismissed
+		//TODO:Play around with the appropriate interval time
+		// notifDeleteInterval = setInterval(() =>{
+		// 	dismissNotif();
+		// 	// console.log(n + "deleted"); 
+		// 	if (n >= notif.notifications.length) {
+		// 		clearInterval(notifMakeInterval);
+		// 	}
+
+		// }, 15000) //currently set to every 10 secs. 
 	}
 
 	stop () {
@@ -353,7 +407,8 @@ class Timer {
 
 		this.interval = null; 
 		friendInterval = null; 
-		notifInterval = null; 
+		notifMakeInterval = null; 
+		notifDeleteInterval = null; 
 
 		// this.updateInterfaceControls(); 
 	}
