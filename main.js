@@ -213,6 +213,14 @@ notifPresent = false;
 //nothing is actually currently linked to the timer (see timer section below/setInterval section)
 
 function makePopUp(){ //see makeFriendText() for example 
+	
+	//NOTE: Can I put all of the following into it's own if (notifPresent = false) condition?
+	if (notifPresent = false) {
+		
+	}
+	notifPresent = true; 
+	console.log (notifPresent);
+
 	var popUp = document.querySelector(".notifContainer");
 
 	popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage);
@@ -220,9 +228,6 @@ function makePopUp(){ //see makeFriendText() for example
 }
 
 function createNotif(notifType, notifText){ //see createMessage() for example 
-	//NOTE: Can I put all of the following into it's own if (notifPresent = false) condition?
-	notifPresent = true; 
-	// console.log (notifPresent);
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
 	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
