@@ -208,6 +208,8 @@ function updateScroll(){
 let n = 0;
 notifMakeInterval = null; 
 notifDeleteInterval = null; 
+notifPresent = false; 
+
 //nothing is actually currently linked to the timer (see timer section below/setInterval section)
 
 function makePopUp(){ //see makeFriendText() for example 
@@ -218,6 +220,9 @@ function makePopUp(){ //see makeFriendText() for example
 }
 
 function createNotif(notifType, notifText){ //see createMessage() for example 
+	//NOTE: Can I put all of the following into it's own if (notifPresent = false) condition?
+	notifPresent = true; 
+	// console.log (notifPresent);
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
 	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
@@ -250,7 +255,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += '<p class="notifNameText">';
 		notifOutput += notifType; 
 		notifOutput += '</p>';
-	}else {
+	} else {
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
 		//Notif Icon, associate with alertName
@@ -272,15 +277,20 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 	notifOutput += '</p></div></div>';
 
 	return notifOutput;
+
 }
 
 //Dismiss Popup Notification
 //TO DO: Clean Up AutoDismissal (see notifDeleteInterval lines)
 function dismissNotif(){
-	var dismissable = document.getElementById("popupNotif");
-	// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
-	dismissable.remove();
 
+	if (notifPresent = true) {
+		notifPresent = false; 
+		// console.log (notifPresent);
+		var dismissable = document.getElementById("popupNotif");
+		// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
+		dismissable.remove();
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -299,7 +309,7 @@ class Timer {
 		};
 
 		this.interval = null; 
-		this.remainingSeconds = 10 * 60; //in seconds (currently: 10 minutes)
+		this.remainingSeconds = 15 * 60; //in seconds (currently: 10 minutes)
 		this.start(); //start Timer on page load
 
 		//click button to start and stop timer
@@ -390,15 +400,16 @@ class Timer {
 		}, 10000) //currently set to every 10 secs. 
 
 		//Dismiss Notification after 5 seconds if not manually dismissed
-		//TODO:Play around with the appropriate interval time
-		// notifDeleteInterval = setInterval(() =>{
-		// 	dismissNotif();
-		// 	// console.log(n + "deleted"); 
-		// 	if (n >= notif.notifications.length) {
-		// 		clearInterval(notifMakeInterval);
-		// 	}
+		//TODO: TWEAK appropriate interval time, possibly combine the above two taking the notifPresent bools into account
+		notifDeleteInterval = setInterval(() =>{
+			dismissNotif();
+			// console.log(n + "deleted"); 
+			if (n >= notif.notifications.length) {
+			// if (notifPresent=false) {
+				clearInterval(notifMakeInterval);
+			}
 
-		// }, 15000) //currently set to every 10 secs. 
+		}, 15000) //currently set to every 15 secs. 
 	}
 
 	stop () {
@@ -413,6 +424,7 @@ class Timer {
 		// this.updateInterfaceControls(); 
 	}
 
+	//Get HTML for Timer
     static getHTML(){
         return `
             <span class="timer__part timer__part--minutes">10</span>
