@@ -141,6 +141,7 @@ function autoType(){
 function matchString(){
 	// var correctString = "no worries"; (9, 0-9 or 10 characters total)
 	var messages = document.querySelector(".phoneMessages");
+	input = input.replace ("!",""); //remove exclamation point
 	var resultTot = input.match(/no worries/gi); //check if input contains "no worries"
 
 	var resultStart = input.toLocaleLowerCase().startsWith("no worries"); //check if input starts with "no worries"
@@ -233,6 +234,8 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 	let notifAudio = new Audio ("generalnotification.mp3");
 	let calAudio = new Audio ("reminder.mp3");
 
+	setTimeout(dismissNotif, 5000);//try again in 5 seconds
+
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
 	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
@@ -302,36 +305,15 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 //TO DO: Clean Up AutoDismissal (see notifDeleteInterval lines)
 function dismissNotif(){
 
-	// if (notifPresent = false) { //notifcation popup is NOT present
-	// 	setTimeout(dismissNotif, 5000);//try again in 5 seconds
-	// } else if (notifPresent = true){
-	// 	notifPresent = false; 
-	// 	// console.log (notifPresent);
-	// 	var dismissable = document.getElementById("popupNotif");
-	// 	// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
-	// 	dismissable.remove();
-	// }
-
-	if (notifPresent = true) {
+	if (notifPresent = false) { //notifcation popup is NOT present
+		return; 
+	}
 		notifPresent = false; 
-		// console.log (notifPresent);
+		console.log (notifPresent);
 		var dismissable = document.getElementById("popupNotif");
 		// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
 		dismissable.remove();
-	}
 
-
-			//Dismiss Notification after 5 seconds if not manually dismissed
-		//TODO: TWEAK appropriate interval time, possibly combine the above two taking the notifPresent bools into account
-		// notifDeleteInterval = setInterval(() =>{
-		// 	dismissNotif();
-		// 	// console.log(n + "deleted"); 
-		// 	if (n >= notif.notifications.length) {
-		// 	// if (notifPresent=false) {
-		// 		clearInterval(notifMakeInterval);
-		// 	}
-
-		// }, 15000) //currently set to every 15 secs. 
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -442,15 +424,15 @@ class Timer {
 
 		//Dismiss Notification after 5 seconds if not manually dismissed
 		//TODO: TWEAK appropriate interval time, possibly combine the above two taking the notifPresent bools into account
-		notifDeleteInterval = setInterval(() =>{
-			dismissNotif();
-			// console.log(n + "deleted"); 
-			if (n >= notif.notifications.length) {
-			// if (notifPresent=false) {
-				clearInterval(notifMakeInterval);
-			}
+		// notifDeleteInterval = setInterval(() =>{
+		// 	dismissNotif();
+		// 	// console.log(n + "deleted"); 
+		// 	if (n >= notif.notifications.length) {
+		// 	// if (notifPresent=false) {
+		// 		clearInterval(notifMakeInterval);
+		// 	}
 
-		}, 15000) //currently set to every 15 secs. 
+		// }, 15000) //currently set to every 15 secs. 
 	}
 
 	stop () {

@@ -2,6 +2,7 @@ const data = {
     "messages": [
         {
             "name" : "Becca",
+            "time" : "00:30",
             "message" : "Hey, I’m running late! Really going to try to make it!"
         },
         {
