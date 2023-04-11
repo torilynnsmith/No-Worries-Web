@@ -5,6 +5,7 @@ function init(){
 	new Timer(
 		document.querySelector(".timer")
 	)
+	
 
 }
 //////////////////////////////////////////////////////////////////////////
@@ -27,6 +28,9 @@ function makeFriendText(){
 
 function createMessage(character, text, characterName){
 	var output = "";
+	let friendAudio = new Audio ("textmessage.mp3");
+	friendAudio.play(); 
+
 	// Name & Icon Formatting
 	output += '<div class="messageContainer">'
 
@@ -145,11 +149,9 @@ function matchString(){
 	//TO DO: update to include punctuation (.,?)
 	//Tried adding in a second parameter to specify an endPosition to search, but that's too specific and turns phrases up incorrectly.
 	//NOTE: GET DANNY HELP HERE! 
+
 	//TO DO: create passwords for starting an stopping the timer for facilitator if needed 
 
-	// console.log ("resultTot Output : " + resultTot);
-	// console.log ("resultStart Output : " + resultStart);
-	// console.log ("resultEnd Output : " + resultEnd);
 	console.log(input);
 
 	if (resultTot===null){ 
@@ -167,6 +169,7 @@ function matchString(){
 		if (resultStart === true && resultEnd === true){ 
 			//CORRECT: input contains "no worries" and only "no worries"
 			//the phrase "no worries" is in the string at the start and the end with NOTHING ELSE
+			//NOTE: this is not actually true! one could type "no worries boop no worries" and it will show as CORRECT
 			
 			messages.innerHTML += createMessage ("me", correctMessage, "Me");
 			console.log ("CORRECT: 'no worries' contained at start & end, only.");
@@ -209,7 +212,6 @@ let n = 0;
 notifMakeInterval = null; 
 notifDeleteInterval = null; 
 notifPresent = false; 
-
 //nothing is actually currently linked to the timer (see timer section below/setInterval section)
 
 function makePopUp(){ //see makeFriendText() for example 
@@ -227,13 +229,18 @@ function makePopUp(){ //see makeFriendText() for example
 	n++; 
 }
 
-function createNotif(notifType, notifText){ //see createMessage() for example 
+function createNotif(notifType, notifText){ //see createMessage() for example
+	let notifAudio = new Audio ("generalnotification.mp3");
+	let calAudio = new Audio ("reminder.mp3");
+
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
 	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
 
 	//TO DO: differentiate between Notifcation Types to make different images icons, etc. 
 	if (notifType === "Notification"){ //If a "Notification Text"
+		notifAudio.play(); 
+
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
 		//Notif Icon, associate with alertName
@@ -243,6 +250,8 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += notifType; 
 		notifOutput += '</p>';
 	} else if (notifType === "Calendar") { //Create Calendar Notification
+		calAudio.play(); 
+
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
 		//Notif Icon, associate with alertName
@@ -252,6 +261,8 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += notifType; 
 		notifOutput += '</p>';
 	} else if (notifType === "Reminder") { //Create Reminder Notification
+		calAudio.play(); 
+
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
 		//Notif Icon, associate with alertName
@@ -261,6 +272,8 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += notifType; 
 		notifOutput += '</p>';
 	} else {
+		notifAudio.play(); 
+
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
 		//Notif Icon, associate with alertName
@@ -289,6 +302,16 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 //TO DO: Clean Up AutoDismissal (see notifDeleteInterval lines)
 function dismissNotif(){
 
+	// if (notifPresent = false) { //notifcation popup is NOT present
+	// 	setTimeout(dismissNotif, 5000);//try again in 5 seconds
+	// } else if (notifPresent = true){
+	// 	notifPresent = false; 
+	// 	// console.log (notifPresent);
+	// 	var dismissable = document.getElementById("popupNotif");
+	// 	// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
+	// 	dismissable.remove();
+	// }
+
 	if (notifPresent = true) {
 		notifPresent = false; 
 		// console.log (notifPresent);
@@ -296,6 +319,19 @@ function dismissNotif(){
 		// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
 		dismissable.remove();
 	}
+
+
+			//Dismiss Notification after 5 seconds if not manually dismissed
+		//TODO: TWEAK appropriate interval time, possibly combine the above two taking the notifPresent bools into account
+		// notifDeleteInterval = setInterval(() =>{
+		// 	dismissNotif();
+		// 	// console.log(n + "deleted"); 
+		// 	if (n >= notif.notifications.length) {
+		// 	// if (notifPresent=false) {
+		// 		clearInterval(notifMakeInterval);
+		// 	}
+
+		// }, 15000) //currently set to every 15 secs. 
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -314,7 +350,7 @@ class Timer {
 		};
 
 		this.interval = null; 
-		this.remainingSeconds = 15 * 60; //in seconds (currently: 10 minutes)
+		this.remainingSeconds = 15 * 60; //in seconds (currently: 15 minutes)
 		this.start(); //start Timer on page load
 
 		//click button to start and stop timer
@@ -387,7 +423,7 @@ class Timer {
 				clearInterval(friendInterval);
 			}
 
-		}, 5000) //1000 ms = 1 second, currently set to every 30 secs
+		}, 30000) //1000 ms = 1 second, currently set to every 30 secs
 		//NOTE: Ideal in-game interval is every 30 seconds
 		//NOTE: setInterval calls repeatedly vs. setTimeout does something once. (might be useful for blocking player input?)
 		//TO DO: How to pause the friend texts alongside the timer. 
