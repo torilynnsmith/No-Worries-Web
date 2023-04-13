@@ -41,8 +41,8 @@ function createMessage(characterClass, text, characterName){
 	if (characterName === "Me"){ // If a Player Text
 		//Play Sound
 		//TO DO: Get Player Text Sound, also add to Player Input Area
-		// let friendAudio = new Audio ("textmessage.mp3");
-		// friendAudio.play(); 
+		let playerAudio = new Audio ("textsent.mp3");
+		playerAudio.play(); 
 
 		//Container
 		output += '<div class="namePlayer">';
@@ -280,6 +280,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 	let calAudio = new Audio ("reminder.mp3");
 
 	setTimeout(dismissNotif, 5000);//try again in 5 seconds
+		//TO DO: rework to give player more time to read
 
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
@@ -412,9 +413,16 @@ class Timer {
 		const minutes = Math.floor(this.remainingSeconds / 60);
 		const seconds = this.remainingSeconds % 60; 
 
+
 		//minutes & seconds must be at least 2 characters, if 2 characters doesn't exist, add a zero to the front. 
 		this.el.minutes.textContent = minutes.toString().padStart(2,"0");
 		this.el.seconds.textContent = seconds.toString().padStart(2,"0");
+		
+		if (minutes === 14 && seconds === 45){ //14 minutes
+			console.log(minutes);
+			console.log(seconds);
+			
+		}
 
 	}
 
@@ -431,6 +439,7 @@ class Timer {
 
 		}
 	}
+
 
 	start () {
 		if (this.remainingSeconds === 0) return;
@@ -501,5 +510,7 @@ class Timer {
 		// `;
     }
 }
+
+
 
 //EXTRA STUFF
