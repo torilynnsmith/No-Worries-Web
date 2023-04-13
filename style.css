@@ -143,6 +143,17 @@ body {
 
 }
 
+.loadSpacer{ /*Creates a blank default to space the screena appropriately at load*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 320px;
+	height: 1px;
+	padding: 0px; 
+
+}
+
 .nameFriend {/*Text Message Sender Container Formatting*/
 	display: flex;
 	align-items: center;

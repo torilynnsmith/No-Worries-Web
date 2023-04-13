@@ -1,12 +1,18 @@
 //initiate these functions OnLoad
 function init(){
 	
+}
+
+//Default Notification is Dismissed to start the experience.
+function disToStart(){
+
 	// Make the Timer
 	new Timer(
 		document.querySelector(".timer")
 	)
-	
 
+	dismissNotif(); 
+	makeFriendText(); //send first text form Messages data
 }
 //////////////////////////////////////////////////////////////////////////
 //Create Friend Messages every 30 seconds
@@ -18,7 +24,7 @@ function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
 	
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-	messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, data.messages[i].name);
+	messages.innerHTML += createMessage (data.messages[i].class, data.messages[i].message, data.messages[i].name);
 	i++; 
 	updateScroll(); //scroll to bottom when new text is created
 }
@@ -26,15 +32,18 @@ function makeFriendText(){
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
 
-function createMessage(character, text, characterName){
+function createMessage(characterClass, text, characterName){
 	var output = "";
-	let friendAudio = new Audio ("textmessage.mp3");
-	friendAudio.play(); 
 
 	// Name & Icon Formatting
 	output += '<div class="messageContainer">'
 
 	if (characterName === "Me"){ // If a Player Text
+		//Play Sound
+		//TO DO: Get Player Text Sound, also add to Player Input Area
+		// let friendAudio = new Audio ("textmessage.mp3");
+		// friendAudio.play(); 
+
 		//Container
 		output += '<div class="namePlayer">';
 		//Character Name
@@ -48,6 +57,10 @@ function createMessage(character, text, characterName){
 	//FREE AVATAR PLACEHOLDER LINK= https://pravatar.cc
 	//Becca = 30, Miranda = 49, Yvonne = 38, Layne = 25, Kennedy = 48, Mom = 22, else = 24
 	else { // If a Friend Text
+		//Play Sound
+		let friendAudio = new Audio ("textmessage.mp3");
+		friendAudio.play(); 
+
 		//Container
 		output += '<div class="nameFriend">';
 		//Icon, associate with Character Name
@@ -69,14 +82,14 @@ function createMessage(character, text, characterName){
 		}
 		//Print Character Name
 		output += '<p class="nameText">';
-		output += character;
+		output += characterName;
 		output += '</p>';
 	}
 	output += '</div>';
 
 	//Text Message Content Formatting
 	//Container
-	output += '<div class="messageIncoming ' + character +'">'
+	output += '<div class="messageIncoming ' + characterClass +'">'
 	//Print Text
 	output += '<p class="messageText">';
 	output += text; 
@@ -139,18 +152,49 @@ function autoType(){
 
 //CHECK IF PLAYER TEXT MESSAGE INPUT MATCHES NO WORRIES
 function matchString(){
-	// var correctString = "no worries"; (9, 0-9 or 10 characters total)
 	var messages = document.querySelector(".phoneMessages");
-	input = input.replace ("!",""); //remove exclamation point
+
+	//REMOVE PUNCTUATION
+	// const punctArray = [".", "!", ",", "?"]; 
+	// input = input.replace (punctArray,""); //remove punctuation
+
+	input = input.replace ("!",""); 
+	input = input.replace (".",""); 
+	input = input.replace (",",""); 
+	input = input.replace ("?",""); 
+	input = input.replace ("@","");
+	input = input.replace ("#",""); 
+	input = input.replace ("$",""); 
+	input = input.replace ("%",""); 
+	input = input.replace ("^",""); 
+	input = input.replace ("&",""); 
+	input = input.replace ("*",""); 
+	input = input.replace ("(",""); 
+	input = input.replace (")",""); 
+	input = input.replace ("-",""); 
+	input = input.replace ("=",""); 
+	input = input.replace ("_",""); 
+	input = input.replace ("+",""); 
+	input = input.replace ("`",""); 
+	input = input.replace ("~",""); 
+	input = input.replace ("[",""); 
+	input = input.replace ("]",""); 
+	input = input.replace ("{",""); 
+	input = input.replace ("}",""); 
+	input = input.replace (";",""); 
+	input = input.replace (":",""); 
+	input = input.replace ("'",""); 
+	input = input.replace ("<",""); 
+	input = input.replace (">",""); 
+	input = input.replace ("/",""); 
+	input = input.replace ("|",""); 
+
+
 	var resultTot = input.match(/no worries/gi); //check if input contains "no worries"
 
 	var resultStart = input.toLocaleLowerCase().startsWith("no worries"); //check if input starts with "no worries"
 	var resultEnd = input.toLocaleLowerCase().endsWith("no worries"); //check if input ends with "no worries"
 	
-	//TO DO: update to include punctuation (.,?)
-	//Tried adding in a second parameter to specify an endPosition to search, but that's too specific and turns phrases up incorrectly.
-	//NOTE: GET DANNY HELP HERE! 
-
 	//TO DO: create passwords for starting an stopping the timer for facilitator if needed 
 
 	console.log(input);
@@ -211,7 +255,7 @@ function updateScroll(){
 //Create Popup Notifcation
 let n = 0;
 notifMakeInterval = null; 
-notifDeleteInterval = null; 
+// notifDeleteInterval = null; 
 notifPresent = false; 
 //nothing is actually currently linked to the timer (see timer section below/setInterval section)
 
@@ -222,7 +266,7 @@ function makePopUp(){ //see makeFriendText() for example
 		
 	}
 	notifPresent = true; 
-	console.log (notifPresent);
+	// console.log (notifPresent);
 
 	var popUp = document.querySelector(".notifContainer");
 
@@ -231,6 +275,7 @@ function makePopUp(){ //see makeFriendText() for example
 }
 
 function createNotif(notifType, notifText){ //see createMessage() for example
+	//Sound
 	let notifAudio = new Audio ("generalnotification.mp3");
 	let calAudio = new Audio ("reminder.mp3");
 
@@ -242,6 +287,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 
 	//TO DO: differentiate between Notifcation Types to make different images icons, etc. 
 	if (notifType === "Notification"){ //If a "Notification Text"
+		//Sound
 		notifAudio.play(); 
 
 		//Header Container
@@ -253,6 +299,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += notifType; 
 		notifOutput += '</p>';
 	} else if (notifType === "Calendar") { //Create Calendar Notification
+		//Sound
 		calAudio.play(); 
 
 		//Header Container
@@ -264,6 +311,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += notifType; 
 		notifOutput += '</p>';
 	} else if (notifType === "Reminder") { //Create Reminder Notification
+		//Sound
 		calAudio.play(); 
 
 		//Header Container
@@ -275,6 +323,7 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += notifType; 
 		notifOutput += '</p>';
 	} else {
+		//Sound
 		notifAudio.play(); 
 
 		//Header Container
@@ -302,16 +351,14 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 }
 
 //Dismiss Popup Notification
-//TO DO: Clean Up AutoDismissal (see notifDeleteInterval lines)
 function dismissNotif(){
 
 	if (notifPresent = false) { //notifcation popup is NOT present
 		return; 
 	}
 		notifPresent = false; 
-		console.log (notifPresent);
+		// console.log (notifPresent);
 		var dismissable = document.getElementById("popupNotif");
-		// dismissable.classList.toggle("dismiss"); //dismisses but the new messages from the java are read but not shown
 		dismissable.remove();
 
 }
@@ -421,18 +468,6 @@ class Timer {
 			}
 
 		}, 10000) //currently set to every 10 secs. 
-
-		//Dismiss Notification after 5 seconds if not manually dismissed
-		//TODO: TWEAK appropriate interval time, possibly combine the above two taking the notifPresent bools into account
-		// notifDeleteInterval = setInterval(() =>{
-		// 	dismissNotif();
-		// 	// console.log(n + "deleted"); 
-		// 	if (n >= notif.notifications.length) {
-		// 	// if (notifPresent=false) {
-		// 		clearInterval(notifMakeInterval);
-		// 	}
-
-		// }, 15000) //currently set to every 15 secs. 
 	}
 
 	stop () {
@@ -442,7 +477,6 @@ class Timer {
 		this.interval = null; 
 		friendInterval = null; 
 		notifMakeInterval = null; 
-		notifDeleteInterval = null; 
 
 		// this.updateInterfaceControls(); 
 	}
@@ -450,7 +484,7 @@ class Timer {
 	//Get HTML for Timer
     static getHTML(){
         return `
-            <span class="timer__part timer__part--minutes">10</span>
+            <span class="timer__part timer__part--minutes">15</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--seconds">00</span>
         `;
