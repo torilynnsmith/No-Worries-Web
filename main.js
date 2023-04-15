@@ -1,6 +1,9 @@
 //initiate these functions OnLoad
+let minutes = 0;
+let seconds = 0; 
+
 function init(){
-	
+
 }
 
 //Default Notification is Dismissed to start the experience.
@@ -18,9 +21,20 @@ function disToStart(){
 //Create Friend Messages every 30 seconds
 let i = 0;
 friendInterval = null; 
-//currently linked to the Timer (See Timer Section) 
+
+function textTimerTest(){
+	if (minutes === 14 && seconds === 55){ //14:55
+		console.log("called from textTimerTest");
+		console.log("minutes:" + minutes);
+		console.log("seconds:" + seconds);
+		
+	}
+}
+
+
 
 function makeFriendText(){
+
 	var messages = document.querySelector(".phoneMessages");
 	
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
@@ -32,7 +46,10 @@ function makeFriendText(){
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
 
+
+
 function createMessage(characterClass, text, characterName){
+
 	var output = "";
 
 	// Name & Icon Formatting
@@ -156,7 +173,7 @@ function matchString(){
 
 	//REMOVE PUNCTUATION
 	// const punctArray = [".", "!", ",", "?"]; 
-	// input = input.replace (punctArray,""); //remove punctuation
+	// input = input.replace (/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""); //remove punctuation
 
 	input = input.replace ("!",""); 
 	input = input.replace (".",""); 
@@ -366,6 +383,10 @@ function dismissNotif(){
 
 //////////////////////////////////////////////////////////////////////////
 //TIMER STUFF
+// let minutes = 0;
+// let seconds = 0; 
+
+
 class Timer {
 	
 	//Construct the Timer
@@ -409,20 +430,23 @@ class Timer {
 
     }
 
-	updateInterfaceTime(){
-		const minutes = Math.floor(this.remainingSeconds / 60);
-		const seconds = this.remainingSeconds % 60; 
+	updateInterfaceTime(){ 
+		// const minutes = Math.floor(this.remainingSeconds / 60);
+		// const seconds = this.remainingSeconds % 60; 
 
+		minutes = Math.floor(this.remainingSeconds / 60);
+		seconds = this.remainingSeconds % 60; 
 
 		//minutes & seconds must be at least 2 characters, if 2 characters doesn't exist, add a zero to the front. 
 		this.el.minutes.textContent = minutes.toString().padStart(2,"0");
 		this.el.seconds.textContent = seconds.toString().padStart(2,"0");
 		
-		if (minutes === 14 && seconds === 45){ //14 minutes
-			console.log(minutes);
-			console.log(seconds);
+		// if (minutes === 14 && seconds === 45){ //14:45
+		// 	console.log("called from updateInterfaceTime");
+		// 	console.log("minutes:" + minutes);
+		// 	console.log("seconds:" + seconds);
 			
-		}
+		// }
 
 	}
 
@@ -444,9 +468,15 @@ class Timer {
 	start () {
 		if (this.remainingSeconds === 0) return;
 
-		this.interval = setInterval(() => {
+		this.interval = setInterval(() => { //being called every second
 			this.remainingSeconds--; //remove 1 from current value
 			this.updateInterfaceTime();
+
+			//TO DO:
+				//replace this test funciton with makeFriendText() & makePopUp()
+				//Delete friendInterval Section
+				//Delete notifMakeInterval Section
+			textTimerTest();
 
 			//if timer reaches 0, stop the timer
 			if (this.remainingSeconds === 0) {
@@ -462,9 +492,9 @@ class Timer {
 			}
 
 		}, 30000) //1000 ms = 1 second, currently set to every 30 secs
-		//NOTE: Ideal in-game interval is every 30 seconds
-		//NOTE: setInterval calls repeatedly vs. setTimeout does something once. (might be useful for blocking player input?)
+
 		//TO DO: How to pause the friend texts alongside the timer. 
+			//should be solved if we move this to being called when the timer is exactly something. 
 
 		// this.updateInterfaceControls(); //swap out buttons
 
@@ -482,6 +512,7 @@ class Timer {
 	stop () {
 		clearInterval(this.interval);
 		clearInterval(friendInterval); 
+		clearInterval(notifMakeInterval); 
 
 		this.interval = null; 
 		friendInterval = null; 
