@@ -3,13 +3,13 @@ const data = {
         {
             "name" : "Me",
             "class" : "me", 
-            "time" : "00:00",
+            "time" : "14:57",
             "message" : "See you guys soon for my birthday party! So excited!"
         },
         {
             "name" : "Becca",
             "class" : "friend", 
-            "time" : "00:30",
+            "time" : "14:30",
             "message" : "Hey, I’m running late! Really going to try to make it!"
         },
         {

@@ -8,47 +8,64 @@ function init(){
 
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
-
 	// Make the Timer
 	new Timer(
 		document.querySelector(".timer")
 	)
-
 	dismissNotif(); 
-	makeFriendText(); //send first text form Messages data
 }
 //////////////////////////////////////////////////////////////////////////
 //Create Friend Messages every 30 seconds
+	//TODO: Switch to TIMESTAMPS
 let i = 0;
 friendInterval = null; 
 
-function textTimerTest(){
-	if (minutes === 14 && seconds === 55){ //14:55
-		console.log("called from textTimerTest");
-		console.log("minutes:" + minutes);
-		console.log("seconds:" + seconds);
+// function textTimerTest(){
+// 	if (minutes === 14 && seconds === 55){ //14:55
+// 		console.log("called from textTimerTest");
+// 		console.log("minutes:" + minutes);
+// 		console.log("seconds:" + seconds);
 		
-	}
-}
-
-
+// 		// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[0].time, data.messages[i].message);
+// 		// i++; 
+// 		// updateScroll(); //scroll to bottom when new text is created
+// 	}
+// }
 
 function makeFriendText(){
 
 	var messages = document.querySelector(".phoneMessages");
+
+	if (minutes === 14 && seconds === 57){ //14:55, Send message 1, Player
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[0].time);
+		i++; 
+		updateScroll(); //scroll to bottom when new text is created
+	} else if (minutes === 14 && seconds === 30){ //14:55, Send message 2, Becca
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[1].time);
+		i++; 
+		updateScroll();
+	} else if (minutes === 14 && seconds === 30){ //14:55, Send message 2, Becca
+		console.log("called from makeFriendText");
+		console.log("minutes:" + minutes);
+		console.log("seconds:" + seconds);
+
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[1].time);
+		i++; 
+		updateScroll();
+	} else {
+		return; 
+	}
 	
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-	messages.innerHTML += createMessage (data.messages[i].class, data.messages[i].message, data.messages[i].name);
-	i++; 
-	updateScroll(); //scroll to bottom when new text is created
+	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].time, data.messages[i].message);
+	// i++; 
+	// updateScroll(); //scroll to bottom when new text is created
 }
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
 
-
-
-function createMessage(characterClass, text, characterName){
+function createMessage(characterName, characterClass, text){
 
 	var output = "";
 
@@ -476,7 +493,7 @@ class Timer {
 				//replace this test funciton with makeFriendText() & makePopUp()
 				//Delete friendInterval Section
 				//Delete notifMakeInterval Section
-			textTimerTest();
+			makeFriendText();
 
 			//if timer reaches 0, stop the timer
 			if (this.remainingSeconds === 0) {
@@ -484,14 +501,14 @@ class Timer {
 			}
 		}, 1000); //every 1000 ms (1 second)
 
-		friendInterval = setInterval(() =>{
-			makeFriendText();
-			// console.log("friend text length " + i); 
-			if (i >= data.messages.length) {
-				clearInterval(friendInterval);
-			}
+		// friendInterval = setInterval(() =>{
+		// 	makeFriendText();
+		// 	// console.log("friend text length " + i); 
+		// 	if (i >= data.messages.length) {
+		// 		clearInterval(friendInterval);
+		// 	}
 
-		}, 30000) //1000 ms = 1 second, currently set to every 30 secs
+		// }, 30000) //1000 ms = 1 second, currently set to every 30 secs
 
 		//TO DO: How to pause the friend texts alongside the timer. 
 			//should be solved if we move this to being called when the timer is exactly something. 
