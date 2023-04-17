@@ -18,48 +18,96 @@ function disToStart(){
 //Create Friend Messages every 30 seconds
 	//TODO: Switch to TIMESTAMPS
 let i = 0;
-friendInterval = null; 
-
-// function textTimerTest(){
-// 	if (minutes === 14 && seconds === 55){ //14:55
-// 		console.log("called from textTimerTest");
-// 		console.log("minutes:" + minutes);
-// 		console.log("seconds:" + seconds);
-		
-// 		// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[0].time, data.messages[i].message);
-// 		// i++; 
-// 		// updateScroll(); //scroll to bottom when new text is created
-// 	}
-// }
+// friendInterval = null; 
 
 function makeFriendText(){
 
 	var messages = document.querySelector(".phoneMessages");
 
-	if (minutes === 14 && seconds === 57){ //14:55, Send message 1, Player
-		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[0].time);
-		i++; 
-		updateScroll(); //scroll to bottom when new text is created
-	} else if (minutes === 14 && seconds === 30){ //14:55, Send message 2, Becca
-		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[1].time);
-		i++; 
-		updateScroll();
-	} else if (minutes === 14 && seconds === 30){ //14:55, Send message 2, Becca
-		console.log("called from makeFriendText");
-		console.log("minutes:" + minutes);
-		console.log("seconds:" + seconds);
-
-		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[1].time);
+	if (minutes === 14 && seconds === 57){ //14:57, Send message 0, Player
+		console.log("called from makeFriendText, 0");
+		// console.log("minutes:" + minutes);
+		// console.log("seconds:" + seconds);
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
 		i++; 
 		updateScroll();
-	} else {
+	} else if (minutes === 14 && seconds === 30){ //14:30, Send message 1, Becca
+		console.log("called from makeFriendText, 1");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[1]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 12 && seconds === 30){ //12:30, Send message 2, Miranda
+		//TO DO: Move the Miranda & Becca exchange up about a minute and a half
+		console.log("called from makeFriendText, 2");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[2]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 12 && seconds === 00){ //12:00, Send message 3, Becca
+		console.log("called from makeFriendText, 3");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[3]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 11 && seconds === 30){ //11:30, Send message 4, Miranda
+		console.log("called from makeFriendText, 4");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[4]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 09 && seconds === 30){ //09:30, Send message 5, Yvonne
+		console.log("called from makeFriendText, 5");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[5]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 09 && seconds === 00){ //08:30, Send message 6, Becca
+		console.log("called from makeFriendText, 6");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[6]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 08 && seconds === 30){ //08:30, Send message 7, Yvonne
+		console.log("called from makeFriendText, 7");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[7]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 07 && seconds === 00){ //07:00, Send message 8, Layne
+		console.log("called from makeFriendText, 8");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[8]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 05 && seconds === 30){ //05:30, Send message 9, Kennedy
+		console.log("called from makeFriendText, 9");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[9]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 04 && seconds === 00){ //04:00, Send message 10, Becca
+		console.log("called from makeFriendText, 10");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[10]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 03 && seconds === 00){ //03:00, Send message 11, Becca
+		console.log("called from makeFriendText, 11");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[11]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 02 && seconds === 00){ //02:00, Send message 12, Becca
+		console.log("called from makeFriendText, 12");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
+		i++; 
+		updateScroll();
+	} else if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
+		console.log("called from makeFriendText, 13");
+		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[13]);
+		i++; 
+		updateScroll();
+		//NOTE: When this one sends, we should probably move to a new screen, but it'll work for now
+	} 
+	else {
 		return; 
 	}
 	
+	//OLD CODE, LINKED TO SETINTERVAL(), DELETE WHEN DONE
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].time, data.messages[i].message);
 	// i++; 
-	// updateScroll(); //scroll to bottom when new text is created
+	// updateScroll();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -75,6 +123,7 @@ function createMessage(characterName, characterClass, text){
 	if (characterName === "Me"){ // If a Player Text
 		//Play Sound
 		//TO DO: Get Player Text Sound, also add to Player Input Area
+			//NOTE: Double-chec if this is happening already? 
 		let playerAudio = new Audio ("textsent.mp3");
 		playerAudio.play(); 
 
@@ -135,11 +184,6 @@ function createMessage(characterName, characterClass, text){
 //////////////////////////////////////////////////////////////////////////
 //PLAYER TEXT INPUT
 let input = localStorage.getItem("input");
-
-//TRY TO REMOVE ALL PUNCTUATION FROM INPUT
-// var inputNoPunct = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s{2,}/g, " ");
-// console.log(inputNoPunct);
-
 var correctMessage = ["No Worries."]; 
 
 function returnText(){
@@ -242,7 +286,6 @@ function matchString(){
 		console.log ("INCORRECT: no worries not contained at all.");
 		console.log ("resultTot Output : " + resultTot)
 		updateScroll();
-		//TO DO: delete and retype text feature.
 
 	} else { //CORRECT: input contains "no worries" and only "no worries"
 		if (resultStart === true && resultEnd === true){ 
@@ -265,6 +308,7 @@ function matchString(){
 		messages.innerHTML += createMessage ("me", correctMessage, "Me");
 		console.log ("INCORRECT: 'no worries' not at start & end.");
 		// console.log ("resultTot Output : " + resultTot);
+
 		//TO DO: Call retyping function
 		autoType(); 
 
@@ -275,12 +319,11 @@ function matchString(){
 
 //TO DO: add play/pause/and restart timer password functionallity
 
-
 function updateScroll(){
 	var phoneWindowDiv = document.getElementById("phoneBG");
 	// window.scrollTo(0,document.body.scrollHeight); //scrolls to the bottom of the whole page
 	phoneWindowDiv.scrollTo(0,phoneWindowDiv.scrollHeight); //scrolls to the bottom of the div class
-
+	// console.log("updateScroll called"); 
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -288,24 +331,43 @@ function updateScroll(){
 
 //Create Popup Notifcation
 let n = 0;
-notifMakeInterval = null; 
-// notifDeleteInterval = null; 
 notifPresent = false; 
-//nothing is actually currently linked to the timer (see timer section below/setInterval section)
 
 function makePopUp(){ //see makeFriendText() for example 
-	
-	//NOTE: Can I put all of the following into it's own if (notifPresent = false) condition?
-	if (notifPresent = false) {
-		
-	}
-	notifPresent = true; 
-	// console.log (notifPresent);
-
 	var popUp = document.querySelector(".notifContainer");
 
-	popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage);
-	n++; 
+	if (minutes === 14 && seconds === 52){ //14:58, Send notif 0, Calendar
+		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[0]);
+		n++; 
+		notifPresent = true; 
+		console.log("called from makePopUp, 0. notifpresent: " + notifPresent);
+		// console.log("minutes:" + minutes);
+		// console.log("seconds:" + seconds);
+	} else if (minutes === 05 && seconds === 00){ //05:30, Send notif 1, Calendar
+	// } else if (minutes === 14 && seconds === 45){ //05:30, Send notif 1, Calendar
+		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[1]);
+		n++; 
+		notifPresent = true; 
+		console.log("called from makePopUp, 1. notifpresent: " + notifPresent);
+	} else if (minutes === 04 && seconds === 30){ //04:30, Send notif 2, Calendar
+	// } else if (minutes === 14 && seconds === 30){ //05:30, Send notif 1, Calendar
+		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[2]);
+		n++; 
+		notifPresent = true; 
+		console.log("called from makePopUp, 2. notifpresent: " + notifPresent);
+	} else if (minutes === 00 && seconds === 30){ //04:30, Send notif 3, Calendar
+	// } else if (minutes === 14 && seconds === 15){ //04:30, Send notif 3, Calendar
+		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[3]);
+		n++; 
+		notifPresent = true; 
+		console.log("called from makePopUp, 3. notifpresent: " + notifPresent);
+	} else {
+		return; 
+	}
+
+	// OLD CODE, LINKED TO SETINTERVAL(), DELETE WHEN DONE
+	// popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage);
+	// n++; 
 }
 
 function createNotif(notifType, notifText){ //see createMessage() for example
@@ -313,14 +375,13 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 	let notifAudio = new Audio ("generalnotification.mp3");
 	let calAudio = new Audio ("reminder.mp3");
 
-	setTimeout(dismissNotif, 5000);//try again in 5 seconds
+	setTimeout(dismissNotif, 15000);//try again in 15 seconds
 		//TO DO: rework to give player more time to read
 
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
 	notifOutput += '<div class="notifMessage" id="popupNotif" onclick="dismissNotif()">'
 
-	//TO DO: differentiate between Notifcation Types to make different images icons, etc. 
 	if (notifType === "Notification"){ //If a "Notification Text"
 		//Sound
 		notifAudio.play(); 
@@ -392,18 +453,13 @@ function dismissNotif(){
 		return; 
 	}
 		notifPresent = false; 
-		// console.log (notifPresent);
+		console.log ("notifPresent = " + notifPresent);
 		var dismissable = document.getElementById("popupNotif");
 		dismissable.remove();
-
 }
 
 //////////////////////////////////////////////////////////////////////////
 //TIMER STUFF
-// let minutes = 0;
-// let seconds = 0; 
-
-
 class Timer {
 	
 	//Construct the Timer
@@ -481,7 +537,6 @@ class Timer {
 		}
 	}
 
-
 	start () {
 		if (this.remainingSeconds === 0) return;
 
@@ -494,46 +549,23 @@ class Timer {
 				//Delete friendInterval Section
 				//Delete notifMakeInterval Section
 			makeFriendText();
+			makePopUp(); 
 
 			//if timer reaches 0, stop the timer
 			if (this.remainingSeconds === 0) {
 				this.stop();
 			}
 		}, 1000); //every 1000 ms (1 second)
-
-		// friendInterval = setInterval(() =>{
-		// 	makeFriendText();
-		// 	// console.log("friend text length " + i); 
-		// 	if (i >= data.messages.length) {
-		// 		clearInterval(friendInterval);
-		// 	}
-
-		// }, 30000) //1000 ms = 1 second, currently set to every 30 secs
-
-		//TO DO: How to pause the friend texts alongside the timer. 
-			//should be solved if we move this to being called when the timer is exactly something. 
-
-		// this.updateInterfaceControls(); //swap out buttons
-
-		//Make next Notifcation after certain Interval
-		notifMakeInterval = setInterval(() =>{
-			makePopUp();
-			// console.log("notif mes length " + n); 
-			if (n >= notif.notifications.length) {
-				clearInterval(notifMakeInterval);
-			}
-
-		}, 10000) //currently set to every 10 secs. 
 	}
 
 	stop () {
 		clearInterval(this.interval);
-		clearInterval(friendInterval); 
-		clearInterval(notifMakeInterval); 
+		// clearInterval(friendInterval); 
+		// clearInterval(notifMakeInterval); 
 
 		this.interval = null; 
-		friendInterval = null; 
-		notifMakeInterval = null; 
+		// friendInterval = null; 
+		// notifMakeInterval = null; 
 
 		// this.updateInterfaceControls(); 
 	}
