@@ -25,75 +25,75 @@ function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
 
 	if (minutes === 14 && seconds === 57){ //14:57, Send message 0, Player
-		console.log("called from makeFriendText, 0");
+		// console.log("called from makeFriendText, 0");
 		// console.log("minutes:" + minutes);
 		// console.log("seconds:" + seconds);
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 14 && seconds === 30){ //14:30, Send message 1, Becca
-		console.log("called from makeFriendText, 1");
+		// console.log("called from makeFriendText, 1");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[1]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 12 && seconds === 30){ //12:30, Send message 2, Miranda
 		//TO DO: Move the Miranda & Becca exchange up about a minute and a half
-		console.log("called from makeFriendText, 2");
+		// console.log("called from makeFriendText, 2");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[2]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 12 && seconds === 00){ //12:00, Send message 3, Becca
-		console.log("called from makeFriendText, 3");
+		// console.log("called from makeFriendText, 3");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[3]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 11 && seconds === 30){ //11:30, Send message 4, Miranda
-		console.log("called from makeFriendText, 4");
+		// console.log("called from makeFriendText, 4");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[4]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 09 && seconds === 30){ //09:30, Send message 5, Yvonne
-		console.log("called from makeFriendText, 5");
+		// console.log("called from makeFriendText, 5");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[5]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 09 && seconds === 00){ //08:30, Send message 6, Becca
-		console.log("called from makeFriendText, 6");
+		// console.log("called from makeFriendText, 6");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[6]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 08 && seconds === 30){ //08:30, Send message 7, Yvonne
-		console.log("called from makeFriendText, 7");
+		// console.log("called from makeFriendText, 7");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[7]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 07 && seconds === 00){ //07:00, Send message 8, Layne
-		console.log("called from makeFriendText, 8");
+		// console.log("called from makeFriendText, 8");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[8]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 05 && seconds === 30){ //05:30, Send message 9, Kennedy
-		console.log("called from makeFriendText, 9");
+		// console.log("called from makeFriendText, 9");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[9]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 04 && seconds === 00){ //04:00, Send message 10, Becca
-		console.log("called from makeFriendText, 10");
+		// console.log("called from makeFriendText, 10");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[10]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 03 && seconds === 00){ //03:00, Send message 11, Becca
-		console.log("called from makeFriendText, 11");
+		// console.log("called from makeFriendText, 11");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[11]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 02 && seconds === 00){ //02:00, Send message 12, Becca
-		console.log("called from makeFriendText, 12");
+		// console.log("called from makeFriendText, 12");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
-		console.log("called from makeFriendText, 13");
+		// console.log("called from makeFriendText, 13");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[13]);
 		i++; 
 		updateScroll();
@@ -199,7 +199,7 @@ function returnText(){
 //RETYPING FEATURE
 //TO DO: MAKE THIS
 function autoType(){
-	console.log ("Autotype called. " + input); 
+	// console.log ("Autotype called. " + input); 
 
 	//reset placeholder text to 'eMessage'
 	// document.querySelector('.e-message').value = '';
@@ -277,14 +277,18 @@ function matchString(){
 
 	console.log(input);
 
+	//FORMAT FOR CREATING MESSAGES
+	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
+	// createMessage(characterName, characterClass, text)
+
 	if (resultTot===null){ 
 		//INCORRECT: the phrase "no worries" does not exist in the string at all
 		//TO DO: Call retyping function
-		autoType(); 
+		// autoType(); 
 
-		messages.innerHTML += createMessage ("me", correctMessage, "Me");
+		messages.innerHTML += createMessage ("Me", "me", correctMessage,);
 		console.log ("INCORRECT: no worries not contained at all.");
-		console.log ("resultTot Output : " + resultTot)
+		// console.log ("resultTot Output : " + resultTot)
 		updateScroll();
 
 	} else { //CORRECT: input contains "no worries" and only "no worries"
@@ -293,7 +297,7 @@ function matchString(){
 			//the phrase "no worries" is in the string at the start and the end with NOTHING ELSE
 			//NOTE: this is not actually true! one could type "no worries boop no worries" and it will show as CORRECT
 			
-			messages.innerHTML += createMessage ("me", correctMessage, "Me");
+			messages.innerHTML += createMessage ("Me", "me", correctMessage,);
 			console.log ("CORRECT: 'no worries' contained at start & end, only.");
 			// console.log ("resultStart Output : " + resultStart);
 			// console.log ("resultEnd Output : " + resultEnd);
@@ -305,12 +309,12 @@ function matchString(){
 
 		} else {
 		//INCORRECT: "no worries" not at start and end of message
-		messages.innerHTML += createMessage ("me", correctMessage, "Me");
+		messages.innerHTML += createMessage ("Me", "me", correctMessage,);
 		console.log ("INCORRECT: 'no worries' not at start & end.");
 		// console.log ("resultTot Output : " + resultTot);
 
 		//TO DO: Call retyping function
-		autoType(); 
+		// autoType(); 
 
 		updateScroll();
 		}
@@ -340,7 +344,7 @@ function makePopUp(){ //see makeFriendText() for example
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[0]);
 		n++; 
 		notifPresent = true; 
-		console.log("called from makePopUp, 0. notifpresent: " + notifPresent);
+		// console.log("called from makePopUp, 0. notifpresent: " + notifPresent);
 		// console.log("minutes:" + minutes);
 		// console.log("seconds:" + seconds);
 	} else if (minutes === 05 && seconds === 00){ //05:30, Send notif 1, Calendar
@@ -348,19 +352,19 @@ function makePopUp(){ //see makeFriendText() for example
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[1]);
 		n++; 
 		notifPresent = true; 
-		console.log("called from makePopUp, 1. notifpresent: " + notifPresent);
+		// console.log("called from makePopUp, 1. notifpresent: " + notifPresent);
 	} else if (minutes === 04 && seconds === 30){ //04:30, Send notif 2, Calendar
 	// } else if (minutes === 14 && seconds === 30){ //05:30, Send notif 1, Calendar
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[2]);
 		n++; 
 		notifPresent = true; 
-		console.log("called from makePopUp, 2. notifpresent: " + notifPresent);
+		// console.log("called from makePopUp, 2. notifpresent: " + notifPresent);
 	} else if (minutes === 00 && seconds === 30){ //04:30, Send notif 3, Calendar
 	// } else if (minutes === 14 && seconds === 15){ //04:30, Send notif 3, Calendar
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[3]);
 		n++; 
 		notifPresent = true; 
-		console.log("called from makePopUp, 3. notifpresent: " + notifPresent);
+		// console.log("called from makePopUp, 3. notifpresent: " + notifPresent);
 	} else {
 		return; 
 	}
@@ -453,7 +457,7 @@ function dismissNotif(){
 		return; 
 	}
 		notifPresent = false; 
-		console.log ("notifPresent = " + notifPresent);
+		// console.log ("notifPresent = " + notifPresent);
 		var dismissable = document.getElementById("popupNotif");
 		dismissable.remove();
 }
