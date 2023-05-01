@@ -13,6 +13,8 @@ function disToStart(){
 		document.querySelector(".timer")
 	)
 	// document.getElementById("chatName").style.visibility = "visible";
+	document.getElementById("inputFieldContainer").style.visibility = "visible";
+
 	dismissNotif(); 
 }
 //////////////////////////////////////////////////////////////////////////
@@ -583,8 +585,15 @@ class Timer {
             <span class="timer__part timer__part--minutes">15</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--seconds">00</span>
-			
         `;
+
+		// <span class="timer__part timer__part--minutes">15</span>
+		// <span class="timer__part">:</span>
+		// <span class="timer__part timer__part--seconds">00</span>
+		// <span div class="chatNameWrapper">
+		// <span class="chatNameContent">The Girls</span>
+		// </span>
+	`;
 		// return `
 		// 	<span class="timer__part timer__part--minutes">15</span>
 		// 	<span class="timer__part">:</span>
