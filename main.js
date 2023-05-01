@@ -12,6 +12,7 @@ function disToStart(){
 	new Timer(
 		document.querySelector(".timer")
 	)
+	// document.getElementById("chatName").style.visibility = "visible";
 	dismissNotif(); 
 }
 //////////////////////////////////////////////////////////////////////////
@@ -469,6 +470,8 @@ class Timer {
 	//Construct the Timer
     constructor (root){
         root.innerHTML = Timer.getHTML();
+		document.getElementById("timer").style.visibility = "visible";
+
 
 		this.el = {
 			minutes: root.querySelector(".timer__part--minutes"),
@@ -479,7 +482,7 @@ class Timer {
 
 		this.interval = null; 
 		this.remainingSeconds = 15 * 60; //in seconds (currently: 15 minutes)
-		this.start(); //start Timer on page load
+		this.start(); //start Timer on Timer load
 
 		//click button to start and stop timer
 		//TO DO: Probably delete this as well? escape rooms don't stop the timer when providing hints. 
@@ -580,6 +583,7 @@ class Timer {
             <span class="timer__part timer__part--minutes">15</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--seconds">00</span>
+			
         `;
 		// return `
 		// 	<span class="timer__part timer__part--minutes">15</span>
