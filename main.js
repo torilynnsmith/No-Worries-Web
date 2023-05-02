@@ -15,6 +15,7 @@ function disToStart(){
 	document.getElementById("timer").style.visibility = "visible";
 	document.getElementById("inputFieldContainer").style.visibility = "visible";
 	document.getElementById("chatNameWrapper").style.visibility = "visible";
+	document.getElementById("headerWrapper").style.visibility = "visible";
 
 	dismissNotif(); 
 }
