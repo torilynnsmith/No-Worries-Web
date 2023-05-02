@@ -15,6 +15,21 @@ body {
 }
 
 /* /////////////////////////////////////////////////////////// */
+.headerwrapper {
+	font-family: Helvetica Neue;
+	color: white;
+	display: flex;
+	/* background-color: #3A3A3A;
+	opacity: 0.8; */
+	position: fixed;
+	top: 0;
+	align-items: center;
+	width: 100%;
+	padding: 10px;
+	margin-left: 20px;
+	/* visibility: hidden; */
+
+}
 
 .chatNameWrapper {
 	display: flex;
