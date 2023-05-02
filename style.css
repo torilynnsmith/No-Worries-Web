@@ -34,7 +34,7 @@ body {
 	/* opacity: 0.8; */
 	height: 55px;
 	padding: 10px;
-	visibility: hidden;
+	/* visibility: hidden; */
 	z-index: 1;
 }
 
@@ -313,7 +313,7 @@ body {
 	width: 100%;
 	padding: 10px;
 	margin-left: 20px;
-	visibility: hidden;
+	/* visibility: hidden; */
 
 }
 

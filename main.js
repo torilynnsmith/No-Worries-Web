@@ -13,9 +13,9 @@ function disToStart(){
 		document.querySelector(".timer")
 	)
 	// document.getElementById("chatName").style.visibility = "visible";
-	document.getElementById("timer").style.visibility = "visible";
+	// document.getElementById("timer").style.visibility = "visible";
 	document.getElementById("inputFieldContainer").style.visibility = "visible";
-	document.getElementById("chatNameWrapper").style.visibility = "visible";
+	// document.getElementById("chatNameWrapper").style.visibility = "visible";
 
 	dismissNotif(); 
 }
