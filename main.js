@@ -281,6 +281,11 @@ function matchString(){
 
 	console.log(input);
 
+	//If nothing is typed in the input field, don't send anything. 
+	if (input===""){
+		return;
+	}
+	
 	//FORMAT FOR CREATING MESSAGES
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
 	// createMessage(characterName, characterClass, text)
