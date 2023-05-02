@@ -1,0 +1,15 @@
+{
+    "name": "No Worries",
+    "short_name": "No Worries",
+    "theme_color": "black",
+    "background_color": "black",
+    "start_url": "./",
+    "id": "no-worries",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "./",
+    "icons": [
+      { "src": "./image.png", "type": "image/png", "sizes": "192x192" },
+      { "src": "./image.png", "type": "image/png", "sizes": "512x512" }
+    ]
+  }
