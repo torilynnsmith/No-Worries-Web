@@ -1,7 +1,7 @@
 //initiate these functions OnLoad
 let minutes = 0;
 let seconds = 0; 
-
+let playerAudio = new Audio ("textsent.mp3");
 
 function init(){
 
@@ -9,6 +9,9 @@ function init(){
 
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
+
+	playerAudio.play(); 
+
 	// Make the Timer
 	new Timer(
 		document.querySelector(".timer")
@@ -144,7 +147,7 @@ function createMessage(characterName, characterClass, text){
 		//Play Sound
 		//TO DO: Get Player Text Sound, also add to Player Input Area
 			//NOTE: Double-chec if this is happening already? 
-		let playerAudio = new Audio ("textsent.mp3");
+		// let playerAudio = new Audio ("textsent.mp3");
 		playerAudio.play(); 
 
 		//Container
