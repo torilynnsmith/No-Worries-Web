@@ -9,10 +9,6 @@ function init(){
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
 	// Make the Timer
-
-	let silentAudio = new Audio ("silence.mp3");
-	silentAudio.play(); 
-
 	new Timer(
 		document.querySelector(".timer")
 	)
