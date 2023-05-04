@@ -1,6 +1,7 @@
 //initiate these functions OnLoad
 let minutes = 0;
 let seconds = 0; 
+let silenceAudio = new Audio ("silence.mp3");
 let playerAudio = new Audio ("textsent.mp3");
 
 function init(){
@@ -11,6 +12,10 @@ function init(){
 function disToStart(){
 
 	playerAudio.play(); 
+	silenceAudio.play(); 
+	console.log("disToStart called"); 
+	//ISSUE: Having trouble gettins sounds to play in Safari. Tried this method where I play a sound with this disToStart interaction and it's still not working.
+	//sounds work when typing or sending a message, but not when receiving texts or notifications. 
 
 	// Make the Timer
 	new Timer(
@@ -33,89 +38,89 @@ function makeFriendText(){
 
 	var messages = document.querySelector(".phoneMessages");
 
-	// if (minutes === 14 && seconds === 57){ //14:57, Send message 0, Player
-	if (minutes === 14 && seconds === 57){ //DEMO 14:57, Send message 0, Player
+	if (minutes === 14 && seconds === 57){ //14:57, Send message 0, Player
+	// if (minutes === 14 && seconds === 57){ //DEMO 14:57, Send message 0, Player
 		// console.log("called from makeFriendText, 0");
 		// console.log("minutes:" + minutes);
 		// console.log("seconds:" + seconds);
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 14 && seconds === 30){ //14:30, Send message 1, Becca
-	} else if (minutes === 14 && seconds === 45){ //DEMO 14:45, Send message 1, Becca
+	} else if (minutes === 14 && seconds === 30){ //14:30, Send message 1, Becca
+	// } else if (minutes === 14 && seconds === 45){ //DEMO 14:45, Send message 1, Becca
 		// console.log("called from makeFriendText, 1");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[1]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 12 && seconds === 30){ //12:30, Send message 2, Miranda
-	} else if (minutes === 14 && seconds === 30){ //DEMO 14:30, Send message 2, Miranda
+	} else if (minutes === 12 && seconds === 30){ //12:30, Send message 2, Miranda
+	// } else if (minutes === 14 && seconds === 30){ //DEMO 14:30, Send message 2, Miranda
 		//TO DO: Move the Miranda & Becca exchange up about a minute and a half
 		// console.log("called from makeFriendText, 2");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[2]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 12 && seconds === 00){ //12:00, Send message 3, Becca
-	} else if (minutes === 14 && seconds === 15){ //DEMO 14:15, Send message 3, Becca
+	} else if (minutes === 12 && seconds === 00){ //12:00, Send message 3, Becca
+	// } else if (minutes === 14 && seconds === 15){ //DEMO 14:15, Send message 3, Becca
 		// console.log("called from makeFriendText, 3");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[3]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 11 && seconds === 30){ //11:30, Send message 4, Miranda
-	} else if (minutes === 14 && seconds === 00){ //DEMO 14:00, Send message 4, Miranda
+	} else if (minutes === 11 && seconds === 30){ //11:30, Send message 4, Miranda
+	// } else if (minutes === 14 && seconds === 00){ //DEMO 14:00, Send message 4, Miranda
 		// console.log("called from makeFriendText, 4");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[4]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 09 && seconds === 30){ //09:30, Send message 5, Yvonne
-	} else if (minutes === 13 && seconds === 45){ //DEMO 13:45, Send message 5, Yvonne
+	} else if (minutes === 09 && seconds === 30){ //09:30, Send message 5, Yvonne
+	// } else if (minutes === 13 && seconds === 45){ //DEMO 13:45, Send message 5, Yvonne
 		// console.log("called from makeFriendText, 5");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[5]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 09 && seconds === 00){ //09:00, Send message 6, Becca
-	} else if (minutes === 13 && seconds === 30){ //DEMO 13:30, Send message 6, Becca
+	} else if (minutes === 09 && seconds === 00){ //09:00, Send message 6, Becca
+	// } else if (minutes === 13 && seconds === 30){ //DEMO 13:30, Send message 6, Becca
 		// console.log("called from makeFriendText, 6");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[6]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 08 && seconds === 30){ //08:30, Send message 7, Yvonne
-	} else if (minutes === 13 && seconds === 15){ //DEMO 13:15, Send message 7, Yvonne
+	} else if (minutes === 08 && seconds === 30){ //08:30, Send message 7, Yvonne
+	// } else if (minutes === 13 && seconds === 15){ //DEMO 13:15, Send message 7, Yvonne
 		// console.log("called from makeFriendText, 7");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[7]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 07 && seconds === 00){ //07:00, Send message 8, Layne
-	} else if (minutes === 12 && seconds === 45){ //DEMO 12:45, Send message 8, Layne
+	} else if (minutes === 07 && seconds === 00){ //07:00, Send message 8, Layne
+	// } else if (minutes === 12 && seconds === 45){ //DEMO 12:45, Send message 8, Layne
 		// console.log("called from makeFriendText, 8");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[8]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 05 && seconds === 30){ //05:30, Send message 9, Kennedy
-	} else if (minutes === 12 && seconds === 15){ //DEMO 12:15, Send message 9, Kennedy
+	} else if (minutes === 05 && seconds === 30){ //05:30, Send message 9, Kennedy
+	// } else if (minutes === 12 && seconds === 15){ //DEMO 12:15, Send message 9, Kennedy
 		// console.log("called from makeFriendText, 9");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[9]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 04 && seconds === 00){ //04:00, Send message 10, Becca
-	} else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send message 10, Becca
+	} else if (minutes === 04 && seconds === 00){ //04:00, Send message 10, Becca
+	// } else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send message 10, Becca
 		// console.log("called from makeFriendText, 10");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[10]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 03 && seconds === 00){ //03:00, Send message 11, Becca
-	} else if (minutes === 11 && seconds === 05){ //DEMO 11:05, Send message 11, Becca
+	} else if (minutes === 03 && seconds === 00){ //03:00, Send message 11, Becca
+	// } else if (minutes === 11 && seconds === 05){ //DEMO 11:05, Send message 11, Becca
 		// console.log("called from makeFriendText, 11");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[11]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 02 && seconds === 00){ //02:00, Send message 12, Becca
-	} else if (minutes === 11 && seconds === 00){ //DEMO 11:00, Send message 12, Becca
+	} else if (minutes === 02 && seconds === 00){ //02:00, Send message 12, Becca
+	// } else if (minutes === 11 && seconds === 00){ //DEMO 11:00, Send message 12, Becca
 		// console.log("called from makeFriendText, 12");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
-	// } else if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
-	} else if (minutes === 10 && seconds === 45){ //DEMO 10:45, Send message 13, Mom
+	} else if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
+	// } else if (minutes === 10 && seconds === 45){ //DEMO 10:45, Send message 13, Mom
 		// console.log("called from makeFriendText, 13");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[13]);
 		i++; 
@@ -375,20 +380,20 @@ function makePopUp(){ //see makeFriendText() for example
 		// console.log("called from makePopUp, 0. notifpresent: " + notifPresent);
 		// console.log("minutes:" + minutes);
 		// console.log("seconds:" + seconds);
-	// } else if (minutes === 05 && seconds === 00){ //05:00, Send notif 1, Calendar
-	} else if (minutes === 12 && seconds === 00){ //DEMO 12:00, Send notif 1, Calendar
+	} else if (minutes === 05 && seconds === 00){ //05:00, Send notif 1, Calendar
+	// } else if (minutes === 12 && seconds === 00){ //DEMO 12:00, Send notif 1, Calendar
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[1]);
 		n++; 
 		notifPresent = true; 
 		// console.log("called from makePopUp, 1. notifpresent: " + notifPresent);
-	// } else if (minutes === 04 && seconds === 30){ //04:30, Send notif 2, Calendar
-	} else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send notif 2, Calendar
+	} else if (minutes === 04 && seconds === 30){ //04:30, Send notif 2, Calendar
+	// } else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send notif 2, Calendar
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[2]);
 		n++; 
 		notifPresent = true; 
 		// console.log("called from makePopUp, 2. notifpresent: " + notifPresent);
-	// } else if (minutes === 00 && seconds === 30){ //04:30, Send notif 3, Calendar
-	} else if (minutes === 10 && seconds === 30){ //DEMO 10:30, Send notif 3, Calendar
+	} else if (minutes === 00 && seconds === 30){ //04:30, Send notif 3, Calendar
+	// } else if (minutes === 10 && seconds === 30){ //DEMO 10:30, Send notif 3, Calendar
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[3]);
 		n++; 
 		notifPresent = true; 
