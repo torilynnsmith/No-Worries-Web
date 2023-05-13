@@ -41,7 +41,9 @@
   </style>
 
   <!-- <body> -->
-  <body onload="momInit()">
+  <!-- <body onload="momInit()"> -->
+  <body id="momChat" onload="init()">
+
 
     <div class="headerwrapper" id="headerWrapper"></div>
     <!-- The second I put anything in here, it gets wonky as heck. The whole page becomes scooted up.  -->
@@ -60,17 +62,17 @@
     </div>
 
     <!-- Notification Pop Up, DISMISS TO START THE EXPERIENCE -->
-    <!-- <div class="notifContainer">
-      <div class="notifMessage" id="popupNotif" onclick="disToStart()">
+    <div class="notifContainer">
+      <div class="notifMessage" id="popupNotif" onclick="momInit()">
         <div class="notifHeader">
           <span class="material-icons">notifications</span>
-          <p class="notifNameText">Notification</p>
-          <p class="timeRec">now</p>
+          <p class="notifNameText">New Message from Mom</p>
+          <p class="timeRec momTimeRec">now</p>
         </div>
-        <p class="notifMessageText"><b>Welcome to <i>No Worries</i>!</b></p>
-        <p class="notifMessageText">Tap this message to dismiss the notification and start the experience.</p>
+        <p class="notifMessageText">Tap to read.</p>
+        <!-- <p class="notifMessageText">Tap this message to dismiss the notification and start the experience.</p> -->
       </div>
-    </div> -->
+    </div>
 
     <!-- Text Message Area -->
     <div class="phoneContainer example" id="phoneBG">

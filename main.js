@@ -1,9 +1,19 @@
-//initiate these functions OnLoad
+//initiate these variables OnLoad
+//Time
 let minutes = 0;
 let seconds = 0; 
-let silenceAudio = new Audio ("silence.mp3");
-// let playerAudio = new Audio ("textsent.mp3");
 
+//Sound
+let silenceAudio = new Audio ("silence.mp3");
+let playerAudio = new Audio ("textsent.mp3");
+let notifAudio = new Audio ("generalnotification.mp3");
+let calAudio = new Audio ("reminder.mp3");
+
+//Other
+let momBool = false; 
+
+//////////////////////////////////////////////////////////////////////////
+//INTIS AND DISMISS TO START FUNCITONS
 //index.html init
 function init(){
 
@@ -11,12 +21,22 @@ function init(){
 
 //momchat.html init
 function momInit(){
+	silenceAudio.play(); 
+	console.log("disToStart called"); 
+
+	momBool = true; 
+
+	//PROBLEM how to get sound to play. do we bring back a disToStart for this page?
 	document.getElementById("inputFieldContainer").style.visibility = "visible";
 	document.getElementById("chatNameWrapper").style.visibility = "visible";
 	document.getElementById("headerWrapper").style.visibility = "visible";
 
-	//Make Mom's text after 3 seconds
-	setTimeout(makeMomText,3000); //3 secs
+	//start Mom Chat texts & notifs after 3 seconds
+	setTimeout(momChatTexts,3000); //3 secs
+	setTimeout(finalPlayerText, 10000); //10 secs
+	setTimeout(finalNotif,15000) //15 secs
+
+	dismissNotif(); 
 }
 
 //Default Notification is Dismissed to start the experience.
@@ -25,7 +45,9 @@ function disToStart(){
 	// playerAudio.play(); 
 	silenceAudio.play(); 
 	console.log("disToStart called"); 
-	//ISSUE: Having trouble gettins sounds to play in Safari. Tried this method where I play a sound with this disToStart interaction and it's still not working.
+	//ISSUE: Having trouble gettins sounds to play in Safari. 
+	//Tried this method where I play a sound with this disToStart interaction and it's still not working.
+		//Tested with the playerAudio.play(); as well
 	//sounds work when typing or sending a message, but not when receiving texts or notifications. 
 
 	// Make the Timer
@@ -40,16 +62,14 @@ function disToStart(){
 	dismissNotif(); 
 }
 //////////////////////////////////////////////////////////////////////////
-//Create Friend Messages every 30 seconds
-	//TODO: Switch to TIMESTAMPS
+//Create Friend Messages
 let i = 0;
-// friendInterval = null; 
 
 function makeFriendText(){
 
 	var messages = document.querySelector(".phoneMessages");
 
-	if (minutes === 14 && seconds === 57){ //14:57, Send message 0, Player
+	if (minutes === 14 && seconds === 56){ //14:57, Send message 0, Player
 	// if (minutes === 14 && seconds === 57){ //DEMO 14:57, Send message 0, Player
 		// console.log("called from makeFriendText, 0");
 		// console.log("minutes:" + minutes);
@@ -130,23 +150,12 @@ function makeFriendText(){
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
-	} else if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
-	// } else if (minutes === 10 && seconds === 45){ //DEMO 10:45, Send message 13, Mom
-		// console.log("called from makeFriendText, 13");
-		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[13]);
-		i++; 
-		updateScroll();
-		//NOTE: When this one sends, we should probably move to a new screen, but it'll work for now
-	} 
-	else {
+	
+	//NOTE: Message 13 (from Mom) was moved to the MOM CHAT PAGE section
+	} else {
 		return; 
 	}
 	
-	//OLD CODE, LINKED TO SETINTERVAL(), DELETE WHEN DONE
-	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].message, false);
-	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].time, data.messages[i].message);
-	// i++; 
-	// updateScroll();
 }
 //////////////////////////////////////////////////////////////////////////
 //MOM CHAT PAGE 
@@ -154,25 +163,39 @@ function makeFriendText(){
 //Go to the Mom Chat Page when time runs out
 function nextChat(){ 
 	if (minutes === 14 && seconds === 58){ //change to 00:00
+		notifAudio.play(); 
 		console.log("called next chat");
+	//might change this to a TimeOut of less than 1 second to make it cleaner?
+	} else if (minutes === 14 && seconds === 57){
 		window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
 	}
 }
 
-function makeMomText(){
-	console.log("called from makeMomText");
+function momChatTexts(){
+	var messages = document.querySelector(".phoneMessages");
 
-	// if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
-	// 	// } else if (minutes === 10 && seconds === 45){ //DEMO 10:45, Send message 13, Mom
-	// 		console.log("called from makeMomText");
-	// 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[13]);
-	// 		i++; 
-	// 		updateScroll();
-	// 		//NOTE: When this one sends, we should probably move to a new screen, but it'll work for now
-	// 	} 
-	// else {
-	// 	return; 
-	// }
+	console.log("called from makeMomText");
+	messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+	updateScroll();
+
+}
+
+function finalPlayerText(){
+	var messages = document.querySelector(".phoneMessages");
+	console.log("called from finalPlayerText");
+
+	//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
+	messages.innerHTML += createMessage ("Me", "me", correctMessage,);
+	// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+	updateScroll();
+}
+
+function finalNotif(){
+	var popUp = document.querySelector(".notifContainer");
+	console.log("called from finalNotif");
+
+	popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
+	// notifPresent = false; //changed to false so it won't dismiss automatically?
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -187,9 +210,6 @@ function createMessage(characterName, characterClass, text){
 
 	if (characterName === "Me"){ // If a Player Text
 		//Play Sound
-		//TO DO: Get Player Text Sound, also add to Player Input Area
-			//NOTE: Double-chec if this is happening already? 
-		let playerAudio = new Audio ("textsent.mp3");
 		playerAudio.play(); 
 
 		//Container
@@ -391,7 +411,7 @@ function matchString(){
 	}
 } 
 
-//TO DO: add play/pause/and restart timer password functionallity
+//TO DO/STRETCH: add play/pause/and restart timer password functionallity
 
 function updateScroll(){
 	var phoneWindowDiv = document.getElementById("phoneBG");
@@ -439,18 +459,17 @@ function makePopUp(){ //see makeFriendText() for example
 		return; 
 	}
 
-	// OLD CODE, LINKED TO SETINTERVAL(), DELETE WHEN DONE
-	// popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage);
-	// n++; 
 }
 
 function createNotif(notifType, notifText){ //see createMessage() for example
-	//Sound
-	let notifAudio = new Audio ("generalnotification.mp3");
-	let calAudio = new Audio ("reminder.mp3");
 
-	setTimeout(dismissNotif, 15000);//try again in 15 seconds
-		//TO DO: rework to give player more time to read
+	//Only enable automatic dismiss notif on the friend Chat page
+	if (momBool === "false"){
+		setTimeout(dismissNotif, 15000);//try again in 15 seconds
+	} else {
+		console.log("dismissNotif skipped");
+	}
+		//NOTE: is 15 secs enough time? 
 
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
@@ -635,12 +654,7 @@ class Timer {
 
 	stop () {
 		clearInterval(this.interval);
-		// clearInterval(friendInterval); 
-		// clearInterval(notifMakeInterval); 
-
 		this.interval = null; 
-		// friendInterval = null; 
-		// notifMakeInterval = null; 
 
 		// this.updateInterfaceControls(); 
 	}
@@ -673,7 +687,5 @@ class Timer {
 		// `;
     }
 }
-
-
 
 //EXTRA STUFF

@@ -110,6 +110,11 @@ const notif = {
             "time" : "00:30",
             "alertMessage" : "Happy Birthday!", 
         },
+        { //4
+            "alertName" : "Notification",
+            "time" : "00:00",
+            "alertMessage" : "The experience is now over. You may exit.", 
+        },
         // {
         //     "alertName" : "Reminder",
         //     "alertMessage" : "This is a REMINDER notification message with some text to remind you of something.", 
