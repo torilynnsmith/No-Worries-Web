@@ -2,7 +2,7 @@
 let minutes = 0;
 let seconds = 0; 
 let silenceAudio = new Audio ("silence.mp3");
-let playerAudio = new Audio ("textsent.mp3");
+// let playerAudio = new Audio ("textsent.mp3");
 
 function init(){
 
@@ -11,7 +11,7 @@ function init(){
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
 
-	playerAudio.play(); 
+	// playerAudio.play(); 
 	silenceAudio.play(); 
 	console.log("disToStart called"); 
 	//ISSUE: Having trouble gettins sounds to play in Safari. Tried this method where I play a sound with this disToStart interaction and it's still not working.
@@ -152,7 +152,7 @@ function createMessage(characterName, characterClass, text){
 		//Play Sound
 		//TO DO: Get Player Text Sound, also add to Player Input Area
 			//NOTE: Double-chec if this is happening already? 
-		// let playerAudio = new Audio ("textsent.mp3");
+		let playerAudio = new Audio ("textsent.mp3");
 		playerAudio.play(); 
 
 		//Container
