@@ -4,8 +4,19 @@ let seconds = 0;
 let silenceAudio = new Audio ("silence.mp3");
 // let playerAudio = new Audio ("textsent.mp3");
 
+//index.html init
 function init(){
 
+}
+
+//momchat.html init
+function momInit(){
+	document.getElementById("inputFieldContainer").style.visibility = "visible";
+	document.getElementById("chatNameWrapper").style.visibility = "visible";
+	document.getElementById("headerWrapper").style.visibility = "visible";
+
+	//Make Mom's text after 3 seconds
+	setTimeout(makeMomText,3000); //3 secs
 }
 
 //Default Notification is Dismissed to start the experience.
@@ -136,6 +147,32 @@ function makeFriendText(){
 	// messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].time, data.messages[i].message);
 	// i++; 
 	// updateScroll();
+}
+//////////////////////////////////////////////////////////////////////////
+//MOM CHAT PAGE 
+
+//Go to the Mom Chat Page when time runs out
+function nextChat(){ 
+	if (minutes === 14 && seconds === 58){ //change to 00:00
+		console.log("called next chat");
+		window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
+	}
+}
+
+function makeMomText(){
+	console.log("called from makeMomText");
+
+	// if (minutes === 01 && seconds === 00){ //01:00, Send message 13, Mom
+	// 	// } else if (minutes === 10 && seconds === 45){ //DEMO 10:45, Send message 13, Mom
+	// 		console.log("called from makeMomText");
+	// 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[13]);
+	// 		i++; 
+	// 		updateScroll();
+	// 		//NOTE: When this one sends, we should probably move to a new screen, but it'll work for now
+	// 	} 
+	// else {
+	// 	return; 
+	// }
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -587,6 +624,7 @@ class Timer {
 				//Delete notifMakeInterval Section
 			makeFriendText();
 			makePopUp(); 
+			nextChat(); 
 
 			//if timer reaches 0, stop the timer
 			if (this.remainingSeconds === 0) {

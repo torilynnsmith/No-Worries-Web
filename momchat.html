@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="apple-mobile-web-app-title" content="NO WORRIES">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="/app.webmanifest" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <title>No Worries</title>
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+
+    <!-- Javascript Links-->
+    <script src="messages.js"></script>
+    <script src="main.js">  </script>
+
+
+    
+  </head>
+
+  <style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .example::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .example {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+  </style>
+
+  <!-- <body> -->
+  <body onload="momInit()">
+
+    <div class="headerwrapper" id="headerWrapper"></div>
+    <!-- The second I put anything in here, it gets wonky as heck. The whole page becomes scooted up.  -->
+
+    <!-- <div class="timer" id="timer"> </div> -->
+    <!-- <div class="timer" id="timer">  -->
+      <!-- <div class="chatNameWrapper" id="chatNameWrapper"> 
+        <p class="chatNameText">Girls Chat</p>
+      </div> -->
+    <!-- </div> -->
+
+    <!-- TO DO: add in the chat name up top with the timer -->
+    <div class="chatNameWrapper" id="chatNameWrapper"> 
+      <!-- <span style='font-size:16px;'>&#127800;</span> -->
+      <p class="chatNameText">Mom &#128151;</p>
+    </div>
+
+    <!-- Notification Pop Up, DISMISS TO START THE EXPERIENCE -->
+    <!-- <div class="notifContainer">
+      <div class="notifMessage" id="popupNotif" onclick="disToStart()">
+        <div class="notifHeader">
+          <span class="material-icons">notifications</span>
+          <p class="notifNameText">Notification</p>
+          <p class="timeRec">now</p>
+        </div>
+        <p class="notifMessageText"><b>Welcome to <i>No Worries</i>!</b></p>
+        <p class="notifMessageText">Tap this message to dismiss the notification and start the experience.</p>
+      </div>
+    </div> -->
+
+    <!-- Text Message Area -->
+    <div class="phoneContainer example" id="phoneBG">
+      <!-- NOTE: if i remove example, the phoneContainer placement gets screwy, so leaving it for now -->
+      
+      <div class="phoneMessages">
+
+        <!-- NOTE: Comment this place holder out  -->
+        <!-- Incoming/Friend Name & Icon Formatting -->
+        <!-- <div class="messageContainer">
+          <div class ="nameFriend"> 
+            <img class = "iconFriend" src ="http://placekitten.com/30/30">
+            <p class = "nameText">Stacey</p>
+          </div> -->
+
+          <!-- NOTE: Comment this place holder out  -->
+          <!-- Text Message Box & Content Formatting -->
+          <!-- <div class ="messageIncoming">
+            <p class="messageText">
+              this is text
+            </p>
+          </div>
+        </div> -->
+
+
+        <!-- NOTE: Comment this place holder out  -->
+        <!-- Outgoing/Player Name & Icon Formatting -->
+        <div class="messageContainer loadSpacer">
+          <!-- <div class ="namePlayer"> 
+            <p class = "nameText">Me</p>
+            <img class = "iconPlayer" src ="http://placekitten.com/30/30"> 
+          </div> -->
+
+          <!-- NOTE: Comment this place holder out  -->
+          <!-- Text Message Box & Content Formatting -->
+          <!-- <div class ="messageIncoming me">
+            <p>
+              See you guys soon for my birthday party! So excited!
+            </p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Player Text Message Input Area -->
+    <div class="inputFieldContainer" id="inputFieldContainer">
+      <input type="text" id="playerInputText" name="playerInputText" placeholder="eMessage" class="e-message">
+      <!-- <input type="button" style="background-color: #1F8CFF;"> -->
+      <button type="button" class="send__btn" onclick="returnText()" id="btnSend" >
+        <span class="material-icons">arrow_upward</span>
+      </button>
+      <script>
+        var enterBtn = document.getElementById("playerInputText");
+        enterBtn.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btnSend").click();
+          }
+        });
+      </script>
+    </div>
+    
+  </body>
+</html>
