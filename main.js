@@ -160,14 +160,25 @@ function makeFriendText(){
 //////////////////////////////////////////////////////////////////////////
 //MOM CHAT PAGE 
 
+//ISSUE: 
+//main.js:170 Not allowed to load local resource: file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html
+//solution, repopulate the page with mom text stuff 
+
 //Go to the Mom Chat Page when time runs out
 function nextChat(){ 
 	if (minutes === 14 && seconds === 58){ //change to 00:00
-		notifAudio.play(); 
-		console.log("called next chat");
-	//might change this to a TimeOut of less than 1 second to make it cleaner?
-	} else if (minutes === 14 && seconds === 57){
-		window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
+		console.log("nextChat called");
+		// notifAudio.play(); 
+
+		//Clear Chat Div of friend's messages
+		clearChatDiv(); 
+
+		//change chat name
+		document.getElementById("chatNameText").innerHTML = "Mom &#128151;";
+	
+		//might change this to a TimeOut of less than 1 second to make it cleaner?
+	// } else if (minutes === 14 && seconds === 57){
+	// 	window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
 	}
 }
 
@@ -196,6 +207,11 @@ function finalNotif(){
 
 	popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
 	// notifPresent = false; //changed to false so it won't dismiss automatically?
+}
+
+function clearChatDiv(){
+	// document.getElementById("").innerHTML =""; 
+	console.log("clearChatDiv called"); 
 }
 
 //////////////////////////////////////////////////////////////////////////

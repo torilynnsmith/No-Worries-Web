@@ -4,8 +4,8 @@ const data = {
             "name" : "Me",
             "class" : "me", 
             "time" : "14:57",
-            "message" : "the push worked"
-            // "message" : "See you guys soon for my birthday party! So excited!"
+            // "message" : "the push worked"
+            "message" : "See you guys soon for my birthday party! So excited!"
 
         },
         { //1
