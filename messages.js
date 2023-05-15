@@ -65,7 +65,7 @@ const data = {
         { //10
             "name" : "Becca",
             "class" : "friend", 
-            "time" : "04:00",
+            "time" : "03:30",
             "message" : "Sorry I couldn't come!"
         },
         {//11
@@ -104,7 +104,7 @@ const notif = {
         },
         { //2
             "alertName" : "Calendar",
-            "time" : "04:30",
+            "time" : "04:00",
             "alertMessage" : "Party cancelled. Clean up before bed.", 
         },
         { //3

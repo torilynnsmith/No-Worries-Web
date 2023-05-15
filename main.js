@@ -5,12 +5,13 @@ let seconds = 0;
 
 //Sound
 let silenceAudio = new Audio ("silence.mp3");
+let friendAudio = new Audio ("textmessage.mp3");
 let playerAudio = new Audio ("textsent.mp3");
 let notifAudio = new Audio ("generalnotification.mp3");
 let calAudio = new Audio ("reminder.mp3");
 
 //Other
-// let momBool = false; 
+let momBool = false; 
 
 //////////////////////////////////////////////////////////////////////////
 //INTIS AND DISMISS TO START FUNCITONS
@@ -132,7 +133,7 @@ function makeFriendText(){
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[9]);
 		i++; 
 		updateScroll();
-	} else if (minutes === 04 && seconds === 00){ //04:00, Send message 10, Becca
+	} else if (minutes === 03 && seconds === 30){ //04:00, Send message 10, Becca
 	// } else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send message 10, Becca
 		// console.log("called from makeFriendText, 10");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[10]);
@@ -152,11 +153,14 @@ function makeFriendText(){
 		updateScroll();
 	} else if (minutes === 14 && seconds === 45) {
 		console.log("makeMomText");
-		notifAudio.play();
+		// notifAudio.play();
 		messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
 		updateScroll();
 	} else if (minutes === 14 && seconds === 40) {
 		console.log("called from finalPlayerText");
+
+		momBool = true; 
+		console.log("momBool =" + momBool); 
 
 		//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
 		messages.innerHTML += createMessage ("Me", "me", correctMessage,);
@@ -200,6 +204,7 @@ function clearChatDiv(){
 	console.log("clearChatDiv called"); 
 }
 
+//DELETE WHEN FINISHED WITH NEW CHAT SET UP
 // function momChatTexts(){
 // 	var messages = document.querySelector(".phoneMessages");
 
@@ -257,7 +262,7 @@ function createMessage(characterName, characterClass, text){
 	//Becca = 30, Miranda = 49, Yvonne = 38, Layne = 25, Kennedy = 48, Mom = 22, else = 24
 	else { // If a Friend Text
 		//Play Sound
-		let friendAudio = new Audio ("textmessage.mp3");
+		// let friendAudio = new Audio ("textmessage.mp3");
 		friendAudio.play(); 
 
 		//Container
@@ -474,7 +479,7 @@ function makePopUp(){ //see makeFriendText() for example
 		n++; 
 		notifPresent = true; 
 		// console.log("called from makePopUp, 1. notifpresent: " + notifPresent);
-	} else if (minutes === 04 && seconds === 30){ //04:30, Send notif 2, Calendar
+	} else if (minutes === 04 && seconds === 00){ //04:30, Send notif 2, Calendar
 	// } else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send notif 2, Calendar
 		popUp.innerHTML += createNotif (notif.notifications[n].alertName, notif.notifications[n].alertMessage, notif.notifications[n].time, notif.notifications.length[2]);
 		n++; 
@@ -498,13 +503,13 @@ function makePopUp(){ //see makeFriendText() for example
 
 function createNotif(notifType, notifText){ //see createMessage() for example
 
-	setTimeout(dismissNotif, 15000);
+	// setTimeout(dismissNotif, 15000);
 	//Only enable automatic dismiss notif on the friend Chat page
-	// if (momBool === "false"){
-	// 	setTimeout(dismissNotif, 15000);//try again in 15 seconds
-	// } else {
-	// 	console.log("dismissNotif skipped");
-	// }
+	if (momBool === "false"){
+		setTimeout(dismissNotif, 15000);//try again in 15 seconds
+	} else if (momBool == "true") {
+		console.log("dismissNotif skipped");
+	}
 		//NOTE: is 15 secs enough time? 
 
 	var notifOutput = "";
