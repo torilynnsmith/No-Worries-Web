@@ -10,7 +10,7 @@ let notifAudio = new Audio ("generalnotification.mp3");
 let calAudio = new Audio ("reminder.mp3");
 
 //Other
-let momBool = false; 
+// let momBool = false; 
 
 //////////////////////////////////////////////////////////////////////////
 //INTIS AND DISMISS TO START FUNCITONS
@@ -20,24 +20,24 @@ function init(){
 }
 
 //momchat.html init
-function momInit(){
-	silenceAudio.play(); 
-	console.log("disToStart called"); 
+// function momInit(){
+// 	silenceAudio.play(); 
+// 	console.log("disToStart called"); 
 
-	momBool = true; 
+// 	momBool = true; 
 
-	//PROBLEM how to get sound to play. do we bring back a disToStart for this page?
-	document.getElementById("inputFieldContainer").style.visibility = "visible";
-	document.getElementById("chatNameWrapper").style.visibility = "visible";
-	document.getElementById("headerWrapper").style.visibility = "visible";
+// 	//PROBLEM how to get sound to play. do we bring back a disToStart for this page?
+// 	document.getElementById("inputFieldContainer").style.visibility = "visible";
+// 	document.getElementById("chatNameWrapper").style.visibility = "visible";
+// 	document.getElementById("headerWrapper").style.visibility = "visible";
 
-	//start Mom Chat texts & notifs after 3 seconds
-	setTimeout(momChatTexts,3000); //3 secs
-	setTimeout(finalPlayerText, 10000); //10 secs
-	setTimeout(finalNotif,15000) //15 secs
+// 	//start Mom Chat texts & notifs after 3 seconds
+// 	setTimeout(momChatTexts,3000); //3 secs
+// 	setTimeout(finalPlayerText, 10000); //10 secs
+// 	setTimeout(finalNotif,15000) //15 secs
 
-	dismissNotif(); 
-}
+// 	dismissNotif(); 
+// }
 
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
@@ -150,13 +150,25 @@ function makeFriendText(){
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
-	
+	} else if (minutes === 14 && seconds === 45) {
+		console.log("makeMomText");
+		notifAudio.play();
+		messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+		updateScroll();
+	} else if (minutes === 14 && seconds === 40) {
+		console.log("called from finalPlayerText");
+
+		//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
+		messages.innerHTML += createMessage ("Me", "me", correctMessage,);
+		// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+		updateScroll();
 	//NOTE: Message 13 (from Mom) was moved to the MOM CHAT PAGE section
 	} else {
 		return; 
 	}
 	
 }
+
 //////////////////////////////////////////////////////////////////////////
 //MOM CHAT PAGE 
 
@@ -166,7 +178,7 @@ function makeFriendText(){
 
 //Go to the Mom Chat Page when time runs out
 function nextChat(){ 
-	if (minutes === 14 && seconds === 58){ //change to 00:00
+	if (minutes === 14 && seconds === 50){ //change to 00:00
 		console.log("nextChat called");
 		// notifAudio.play(); 
 
@@ -182,37 +194,40 @@ function nextChat(){
 	}
 }
 
-function momChatTexts(){
-	var messages = document.querySelector(".phoneMessages");
-
-	console.log("called from makeMomText");
-	messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
-	updateScroll();
-
-}
-
-function finalPlayerText(){
-	var messages = document.querySelector(".phoneMessages");
-	console.log("called from finalPlayerText");
-
-	//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
-	messages.innerHTML += createMessage ("Me", "me", correctMessage,);
-	// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
-	updateScroll();
-}
-
-function finalNotif(){
-	var popUp = document.querySelector(".notifContainer");
-	console.log("called from finalNotif");
-
-	popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
-	// notifPresent = false; //changed to false so it won't dismiss automatically?
-}
-
+//delete all friend's previous messages (looks like the chat changes)
 function clearChatDiv(){
-	// document.getElementById("").innerHTML =""; 
+	document.getElementById("phoneMessages").innerHTML =" "; 
 	console.log("clearChatDiv called"); 
 }
+
+// function momChatTexts(){
+// 	var messages = document.querySelector(".phoneMessages");
+
+// 	console.log("called from makeMomText");
+// 	messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+// 	updateScroll();
+
+// }
+
+// function finalPlayerText(){
+// 	var messages = document.querySelector(".phoneMessages");
+// 	console.log("called from finalPlayerText");
+
+// 	//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
+// 	messages.innerHTML += createMessage ("Me", "me", correctMessage,);
+// 	// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+// 	updateScroll();
+// }
+
+// function finalNotif(){
+// 	var popUp = document.querySelector(".notifContainer");
+// 	console.log("called from finalNotif");
+
+// 	popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
+// 	// notifPresent = false; //changed to false so it won't dismiss automatically?
+// }
+
+
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
@@ -471,6 +486,10 @@ function makePopUp(){ //see makeFriendText() for example
 		n++; 
 		notifPresent = true; 
 		// console.log("called from makePopUp, 3. notifpresent: " + notifPresent);
+	} else if (minutes === 14 && seconds === 37) {
+		console.log("finalNotif");
+		popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
+		// notifPresent = false; //changed to false so it won't dismiss automatically?
 	} else {
 		return; 
 	}
@@ -479,12 +498,13 @@ function makePopUp(){ //see makeFriendText() for example
 
 function createNotif(notifType, notifText){ //see createMessage() for example
 
+	setTimeout(dismissNotif, 15000);
 	//Only enable automatic dismiss notif on the friend Chat page
-	if (momBool === "false"){
-		setTimeout(dismissNotif, 15000);//try again in 15 seconds
-	} else {
-		console.log("dismissNotif skipped");
-	}
+	// if (momBool === "false"){
+	// 	setTimeout(dismissNotif, 15000);//try again in 15 seconds
+	// } else {
+	// 	console.log("dismissNotif skipped");
+	// }
 		//NOTE: is 15 secs enough time? 
 
 	var notifOutput = "";
