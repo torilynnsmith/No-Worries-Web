@@ -182,22 +182,22 @@ function makeFriendText(){
 //solution, repopulate the page with mom text stuff 
 
 //Go to the Mom Chat Page when time runs out
-function nextChat(){ 
-	if (minutes === 14 && seconds === 50){ //change to 00:00
-		console.log("nextChat called");
-		// notifAudio.play(); 
+// function nextChat(){ 
+// 	if (minutes === 14 && seconds === 50){ //change to 00:00
+// 		console.log("nextChat called");
+// 		// notifAudio.play(); 
 
-		//Clear Chat Div of friend's messages
-		clearChatDiv(); 
+// 		//Clear Chat Div of friend's messages
+// 		clearChatDiv(); 
 
-		//change chat name
-		document.getElementById("chatNameText").innerHTML = "Mom &#128151;";
+// 		//change chat name
+// 		document.getElementById("chatNameText").innerHTML = "Mom &#128151;";
 	
-		//might change this to a TimeOut of less than 1 second to make it cleaner?
-	// } else if (minutes === 14 && seconds === 57){
-	// 	window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
-	}
-}
+// 		//might change this to a TimeOut of less than 1 second to make it cleaner?
+// 	// } else if (minutes === 14 && seconds === 57){
+// 	// 	window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
+// 	}
+// }
 
 //delete all friend's previous messages (looks like the chat changes)
 function clearChatDiv(){
@@ -685,7 +685,7 @@ class Timer {
 				//Delete notifMakeInterval Section
 			makeFriendText();
 			makePopUp(); 
-			nextChat(); 
+			// nextChat(); 
 
 			//if timer reaches 0, stop the timer
 			if (this.remainingSeconds === 0) {
