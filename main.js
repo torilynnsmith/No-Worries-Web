@@ -151,12 +151,12 @@ function makeFriendText(){
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
-	} else if (minutes === 14 && seconds === 45) {
+	} else if (minutes === 01 && seconds === 00) {
 		console.log("makeMomText");
 		// notifAudio.play();
 		messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
 		updateScroll();
-	} else if (minutes === 14 && seconds === 40) {
+	} else if (minutes === 00 && seconds === 30) {
 		console.log("called from finalPlayerText");
 
 		momBool = true; 
@@ -166,6 +166,7 @@ function makeFriendText(){
 		messages.innerHTML += createMessage ("Me", "me", correctMessage,);
 		// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
 		updateScroll();
+	//DELTE THIS NOTE WHEN DONE
 	//NOTE: Message 13 (from Mom) was moved to the MOM CHAT PAGE section
 	} else {
 		return; 
@@ -491,7 +492,7 @@ function makePopUp(){ //see makeFriendText() for example
 		n++; 
 		notifPresent = true; 
 		// console.log("called from makePopUp, 3. notifpresent: " + notifPresent);
-	} else if (minutes === 14 && seconds === 37) {
+	} else if (minutes === 00 && seconds === 20) {
 		console.log("finalNotif");
 		popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
 		// notifPresent = false; //changed to false so it won't dismiss automatically?
