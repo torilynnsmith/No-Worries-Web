@@ -5,6 +5,13 @@ let seconds = 0;
 
 //Sound
 let silenceAudio = new Audio ("silence.mp3");
+// let reminderAudio = new Audio ("reminder.mp3");
+	//used for sound testing
+
+let soundEffect = new Audio();
+// soundEffect.autoplay = true;
+
+
 let friendAudio = new Audio ("textmessage.mp3");
 let playerAudio = new Audio ("textsent.mp3");
 let notifAudio = new Audio ("generalnotification.mp3");
@@ -17,7 +24,8 @@ let momBool = false;
 //INTIS AND DISMISS TO START FUNCITONS
 //index.html init
 function init(){
-
+	soundEffect.autoplay = true;
+	console.log("init called"); 
 }
 
 //momchat.html init
@@ -43,14 +51,27 @@ function init(){
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
 
-	// playerAudio.play(); 
-	silenceAudio.play(); 
-	console.log("disToStart called"); 
 	//ISSUE: Having trouble gettins sounds to play in Safari. 
 	//Tried this method where I play a sound with this disToStart interaction and it's still not working.
-		//Tested with the playerAudio.play(); as well
+	//Tested with the playerAudio.play(); as well
 	//sounds work when typing or sending a message, but not when receiving texts or notifications. 
+	//New fix: autoplaying soundEffect.src and replacing the audio file when something automatic happens. 
 
+
+	// playerAudio.play(); 
+	// silenceAudio.play(); 
+	// reminderAudio.play(); 
+
+	// (This is a tiny MP3 file that is silent and extremely short - retrieved from https://bigsoundbank.com and then modified)
+	// soundEffect.src = "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+	// soundEffect.src = "silence.mp3"; 
+	soundEffect.src = "reminder.mp3"; 
+	console.log(soundEffect); 
+	// console.log(soundEffect.autoplay);
+
+
+	console.log("disToStart called"); 
+	
 	// Make the Timer
 	new Timer(
 		document.querySelector(".timer")
@@ -210,7 +231,9 @@ function createMessage(characterName, characterClass, text){
 
 	if (characterName === "Me"){ // If a Player Text
 		//Play Sound
-		playerAudio.play(); 
+		// playerAudio.play(); 
+		soundEffect.src = "textsent.mp3"; 
+		console.log(soundEffect); 
 
 		//Container
 		output += '<div class="namePlayer">';
@@ -227,7 +250,9 @@ function createMessage(characterName, characterClass, text){
 	else { // If a Friend Text
 		//Play Sound
 		// let friendAudio = new Audio ("textmessage.mp3");
-		friendAudio.play(); 
+		// friendAudio.play(); 
+		soundEffect.src = "textmessage.mp3"; 
+		console.log(soundEffect); 
 
 		//Container
 		output += '<div class="nameFriend">';
@@ -484,7 +509,9 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 
 	if (notifType === "Notification"){ //If a "Notification Text"
 		//Sound
-		notifAudio.play(); 
+		// notifAudio.play(); 
+		soundEffect.src = "generalnotification.mp3"; 
+		console.log(soundEffect); 
 
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
@@ -496,7 +523,9 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += '</p>';
 	} else if (notifType === "Calendar") { //Create Calendar Notification
 		//Sound
-		calAudio.play(); 
+		// calAudio.play(); 
+		soundEffect.src = "reminder.mp3"; 
+		console.log(soundEffect); 
 
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
@@ -508,7 +537,9 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += '</p>';
 	} else if (notifType === "Reminder") { //Create Reminder Notification
 		//Sound
-		calAudio.play(); 
+		// calAudio.play(); 
+		soundEffect.src = "reminder.mp3"; 
+		console.log(soundEffect); 
 
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
@@ -520,7 +551,9 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 		notifOutput += '</p>';
 	} else {
 		//Sound
-		notifAudio.play(); 
+		// notifAudio.play(); 
+		soundEffect.src = "generalnotification.mp3"; 
+		console.log(soundEffect); 
 
 		//Header Container
 		notifOutput += '<div class ="notifHeader">';
