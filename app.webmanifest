@@ -9,7 +9,7 @@
     "orientation": "portrait",
     "scope": "./",
     "icons": [
-      { "src": "./image.png", "type": "image/png", "sizes": "192x192" },
-      { "src": "./image.png", "type": "image/png", "sizes": "512x512" }
+      { "src": "./nwicon192.png", "type": "image/png", "sizes": "192x192" },
+      { "src": "./nwicon512.png", "type": "image/png", "sizes": "512x512" }
     ]
   }
