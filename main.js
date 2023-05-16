@@ -151,23 +151,22 @@ function makeFriendText(){
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
+	} else if (minutes === 01 && seconds === 10) {
+	// } else if (minutes === 14 && seconds === 40) {
+		nextChat(); 
 	} else if (minutes === 01 && seconds === 00) {
-		console.log("makeMomText");
-		// notifAudio.play();
+	// } else if (minutes === 14 && seconds === 35) {
+		// console.log("makeMomText");
+		momBool = true; 
 		messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
 		updateScroll();
 	} else if (minutes === 00 && seconds === 30) {
+	// } else if (minutes === 14 && seconds === 25) {
 		console.log("called from finalPlayerText");
-
-		momBool = true; 
-		console.log("momBool =" + momBool); 
-
 		//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
-		messages.innerHTML += createMessage ("Me", "me", correctMessage,);
-		// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
+		// messages.innerHTML += createMessage ("Me", "me", correctMessage,);
+		messages.innerHTML += createMessage ("Me", "me", "No Worries. Thank you, Mom. I love you.",);
 		updateScroll();
-	//DELTE THIS NOTE WHEN DONE
-	//NOTE: Message 13 (from Mom) was moved to the MOM CHAT PAGE section
 	} else {
 		return; 
 	}
@@ -179,9 +178,9 @@ function makeFriendText(){
 
 //ISSUE: 
 //main.js:170 Not allowed to load local resource: file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html
-//solution, repopulate the page with mom text stuff 
+//solution, repopulate the page with mom text chat tuff instead
 
-//Go to the Mom Chat Page when time runs out
+//Change to the Mom Chat Page
 function nextChat(){ 
 	console.log("nextChat called");
 	// notifAudio.play(); 
@@ -191,21 +190,6 @@ function nextChat(){
 
 	//change chat name
 	document.getElementById("chatNameText").innerHTML = "Mom &#128151;";
-
-	// if (minutes === 01 && seconds === 30){ //change to 00:00
-	// 	console.log("nextChat called");
-	// 	// notifAudio.play(); 
-
-	// 	//Clear Chat Div of friend's messages
-	// 	clearChatDiv(); 
-
-	// 	//change chat name
-	// 	document.getElementById("chatNameText").innerHTML = "Mom &#128151;";
-	
-		//might change this to a TimeOut of less than 1 second to make it cleaner?
-	// } else if (minutes === 14 && seconds === 57){
-	// 	window.location.href = "file:///Users/victorialsmith/Desktop/github/No-Worries-Web/momchat.html";
-	}
 }
 
 //delete all friend's previous messages (looks like the chat changes)
@@ -213,36 +197,6 @@ function clearChatDiv(){
 	document.getElementById("phoneMessages").innerHTML =" "; 
 	console.log("clearChatDiv called"); 
 }
-
-//DELETE WHEN FINISHED WITH NEW CHAT SET UP
-// function momChatTexts(){
-// 	var messages = document.querySelector(".phoneMessages");
-
-// 	console.log("called from makeMomText");
-// 	messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
-// 	updateScroll();
-
-// }
-
-// function finalPlayerText(){
-// 	var messages = document.querySelector(".phoneMessages");
-// 	console.log("called from finalPlayerText");
-
-// 	//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
-// 	messages.innerHTML += createMessage ("Me", "me", correctMessage,);
-// 	// messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
-// 	updateScroll();
-// }
-
-// function finalNotif(){
-// 	var popUp = document.querySelector(".notifContainer");
-// 	console.log("called from finalNotif");
-
-// 	popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
-// 	// notifPresent = false; //changed to false so it won't dismiss automatically?
-// }
-
-
 
 //////////////////////////////////////////////////////////////////////////
 //Create Text Messages (Friend & Player)
@@ -502,6 +456,7 @@ function makePopUp(){ //see makeFriendText() for example
 		notifPresent = true; 
 		// console.log("called from makePopUp, 3. notifpresent: " + notifPresent);
 	} else if (minutes === 00 && seconds === 20) {
+	// } else if (minutes === 14 && seconds === 20) {
 		console.log("finalNotif");
 		popUp.innerHTML += createNotif (notif.notifications[4].alertName, notif.notifications[4].alertMessage, notif.notifications[4].time, notif.notifications.length[4]);
 		// notifPresent = false; //changed to false so it won't dismiss automatically?
@@ -515,12 +470,13 @@ function createNotif(notifType, notifText){ //see createMessage() for example
 
 	// setTimeout(dismissNotif, 15000);
 	//Only enable automatic dismiss notif on the friend Chat page
-	if (momBool === "false"){
-		setTimeout(dismissNotif, 15000);//try again in 15 seconds
-	} else if (momBool == "true") {
-		console.log("dismissNotif skipped");
-	}
 		//NOTE: is 15 secs enough time? 
+	if (momBool === true){
+		console.log("dismissNotif skipped");
+	} else {
+		setTimeout(dismissNotif, 15000); //try again in 15 seconds
+		console.log("dismissOnOff called")
+	}
 
 	var notifOutput = "";
 	notifOutput += '<div class="notifContainer">'
@@ -694,6 +650,7 @@ class Timer {
 				//Delete notifMakeInterval Section
 			makeFriendText();
 			makePopUp(); 
+			// dismissOnOff(); 
 			// nextChat(); 
 
 			//if timer reaches 0, stop the timer
