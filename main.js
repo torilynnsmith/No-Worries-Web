@@ -4,14 +4,9 @@ let minutes = 0;
 let seconds = 0; 
 
 //Sound
-let silenceAudio = new Audio ("silence.mp3");
-// let reminderAudio = new Audio ("reminder.mp3");
-	//used for sound testing
-
 let soundEffect = new Audio();
-// soundEffect.autoplay = true;
 
-
+let silenceAudio = new Audio ("silence.mp3");
 let friendAudio = new Audio ("textmessage.mp3");
 let playerAudio = new Audio ("textsent.mp3");
 let notifAudio = new Audio ("generalnotification.mp3");
@@ -28,44 +23,12 @@ function init(){
 	console.log("init called"); 
 }
 
-//momchat.html init
-// function momInit(){
-// 	silenceAudio.play(); 
-// 	console.log("disToStart called"); 
-
-// 	momBool = true; 
-
-// 	//PROBLEM how to get sound to play. do we bring back a disToStart for this page?
-// 	document.getElementById("inputFieldContainer").style.visibility = "visible";
-// 	document.getElementById("chatNameWrapper").style.visibility = "visible";
-// 	document.getElementById("headerWrapper").style.visibility = "visible";
-
-// 	//start Mom Chat texts & notifs after 3 seconds
-// 	setTimeout(momChatTexts,3000); //3 secs
-// 	setTimeout(finalPlayerText, 10000); //10 secs
-// 	setTimeout(finalNotif,15000) //15 secs
-
-// 	dismissNotif(); 
-// }
-
 //Default Notification is Dismissed to start the experience.
 function disToStart(){
 
-	//ISSUE: Having trouble gettins sounds to play in Safari. 
-	//Tried this method where I play a sound with this disToStart interaction and it's still not working.
-	//Tested with the playerAudio.play(); as well
-	//sounds work when typing or sending a message, but not when receiving texts or notifications. 
-	//New fix: autoplaying soundEffect.src and replacing the audio file when something automatic happens. 
-
-
-	// playerAudio.play(); 
-	// silenceAudio.play(); 
-	// reminderAudio.play(); 
-
 	// (This is a tiny MP3 file that is silent and extremely short - retrieved from https://bigsoundbank.com and then modified)
-	// soundEffect.src = "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
-	// soundEffect.src = "silence.mp3"; 
-	soundEffect.src = "reminder.mp3"; 
+	soundEffect.src = "silence.mp3"; 
+	// soundEffect.src = "reminder.mp3"; 
 	console.log(soundEffect); 
 	// console.log(soundEffect.autoplay);
 
@@ -683,8 +646,6 @@ class Timer {
 				//Delete notifMakeInterval Section
 			makeFriendText();
 			makePopUp(); 
-			// dismissOnOff(); 
-			// nextChat(); 
 
 			//if timer reaches 0, stop the timer
 			if (this.remainingSeconds === 0) {
