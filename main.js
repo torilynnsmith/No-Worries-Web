@@ -17,6 +17,7 @@ let verBool = true;
 	//verBool = true = 15 minute experience
 	//verBool = false = 5(?) minute experience. 
 let momBool = false; 
+let notifPresent = false; 
 
 //////////////////////////////////////////////////////////////////////////
 //INTIS AND DISMISS TO START FUNCITONS
@@ -24,6 +25,30 @@ let momBool = false;
 function init(){
 	soundEffect.autoplay = true;
 	console.log("init called"); 
+	notifPresent = true; 
+	console.log(notifPresent); 
+}
+
+function setTrue(){
+	verBool = true;
+	console.log(verBool);
+
+	// var startDismissable = document.getElementById("popupNotifStart2");
+	// startDismissable.remove(); 
+	dismissNotif();
+	notifPresent = true; 
+	disToStart();
+}
+
+function setFalse(){
+	verBool = false; 
+	console.log(verBool);
+
+	// var startDismissable = document.getElementById("popupNotifStart2");
+	// startDismissable.remove(); 
+	dismissNotif();
+	notifPresent = true; 
+	disToStart(); 
 }
 
 //Default Notification is Dismissed to start the experience.
@@ -47,6 +72,8 @@ function disToStart(){
 	document.getElementById("chatNameWrapper").style.visibility = "visible";
 	document.getElementById("headerWrapper").style.visibility = "visible";
 
+	//dismiss other starting popup notifications
+	// document.getElementById("popupNotif").style.visibility = "invisible":
 	dismissNotif(); 
 }
 //////////////////////////////////////////////////////////////////////////
@@ -391,7 +418,7 @@ function updateScroll(){
 
 //Create Popup Notifcation
 let n = 0;
-notifPresent = false; 
+// notifPresent = false; 
 
 function makePopUp(){ //see makeFriendText() for example 
 	var popUp = document.querySelector(".notifContainer");
