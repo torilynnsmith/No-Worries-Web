@@ -86,20 +86,47 @@ body {
 /* /////////////////////////////////////////////////////////// */
 /* NOTIFCATION POPUP COMPONENTS */
 
-.notifContainer {/*Container for all Notification Content*/
+.notifArea {/*Container for all Notification Content*/
 	display: flex;
-	position: fixed;
+	/* position: fixed; */
+	position: absolute;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	/* margin: auto;  */
-	position: absolute;
 	top: 50%;
 	left: 50%; 
 	transform: translate(-50%, -50%);
 	width: auto;
 	font-family: Helvetica Neue;
 	z-index: 1;
+
+}
+
+.notifContainer{ /*Container for All Individual Text Messages*/
+	display: flex;
+	/* position: fixed; */
+	/* position: absolute; */
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	/* margin: auto;  */
+	/* top: 50%;
+	left: 50%; 
+	transform: translate(-50%, -50%); */
+	width: auto;	
+	color: black;
+	font-family: Helvetica Neue;
+	padding-bottom: 15px;
+
+	/* display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: auto;
+	color: black;
+	font-family: Helvetica Neue;
+	padding-bottom: 15px; */
 
 }
 
