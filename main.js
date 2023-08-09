@@ -13,6 +13,9 @@ let notifAudio = new Audio ("generalnotification.mp3");
 let calAudio = new Audio ("reminder.mp3");
 
 //Other
+let verBool = true; 
+	//verBool = true = 15 minute experience
+	//verBool = false = 5(?) minute experience. 
 let momBool = false; 
 
 //////////////////////////////////////////////////////////////////////////
@@ -55,47 +58,34 @@ function makeFriendText(){
 	var messages = document.querySelector(".phoneMessages");
 
 	if (minutes === 14 && seconds === 56){ //14:57, Send message 0, Player
-	// if (minutes === 14 && seconds === 57){ //DEMO 14:57, Send message 0, Player
-		// console.log("called from makeFriendText, 0");
-		// console.log("minutes:" + minutes);
-		// console.log("seconds:" + seconds);
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 14 && seconds === 30){ //14:30, Send message 1, Becca
-	// } else if (minutes === 14 && seconds === 45){ //DEMO 14:45, Send message 1, Becca
-		// console.log("called from makeFriendText, 1");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[1]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 12 && seconds === 30){ //12:30, Send message 2, Miranda
-	// } else if (minutes === 14 && seconds === 30){ //DEMO 14:30, Send message 2, Miranda
-		//TO DO: Move the Miranda & Becca exchange up about a minute and a half
-		// console.log("called from makeFriendText, 2");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[2]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 12 && seconds === 00){ //12:00, Send message 3, Becca
-	// } else if (minutes === 14 && seconds === 15){ //DEMO 14:15, Send message 3, Becca
-		// console.log("called from makeFriendText, 3");
+		//NOTE: Receiving a bunch of errors about: 
+			//"Decimals with leading zeros are not allowed." AND
+			//"Octal literals are not allowed. Use the syntax '0o9'"
+			//They don't seem to be effecting the code running in the actual browser. 
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[3]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 11 && seconds === 30){ //11:30, Send message 4, Miranda
-	// } else if (minutes === 14 && seconds === 00){ //DEMO 14:00, Send message 4, Miranda
-		// console.log("called from makeFriendText, 4");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[4]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 09 && seconds === 30){ //09:30, Send message 5, Yvonne
-	// } else if (minutes === 13 && seconds === 45){ //DEMO 13:45, Send message 5, Yvonne
-		// console.log("called from makeFriendText, 5");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[5]);
 		i++; 
 		updateScroll();
-	} else if (minutes === 09 && seconds === 00){ //09:00, Send message 6, Becca
-	// } else if (minutes === 13 && seconds === 30){ //DEMO 13:30, Send message 6, Becca
-		// console.log("called from makeFriendText, 6");
+	} else if (minutes === 09 && seconds === 00){ //09:00, Send message 6, Becca;
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[6]);
 		i++; 
 		updateScroll();
@@ -118,37 +108,25 @@ function makeFriendText(){
 		i++; 
 		updateScroll();
 	} else if (minutes === 03 && seconds === 30){ //04:00, Send message 10, Becca
-	// } else if (minutes === 12 && seconds === 30){ //DEMO 12:30, Send message 10, Becca
-		// console.log("called from makeFriendText, 10");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[10]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 03 && seconds === 00){ //03:00, Send message 11, Becca
-	// } else if (minutes === 11 && seconds === 05){ //DEMO 11:05, Send message 11, Becca
-		// console.log("called from makeFriendText, 11");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[11]);
 		i++; 
 		updateScroll();
 	} else if (minutes === 02 && seconds === 00){ //02:00, Send message 12, Becca
-	// } else if (minutes === 11 && seconds === 00){ //DEMO 11:00, Send message 12, Becca
-		// console.log("called from makeFriendText, 12");
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[12]);
 		i++; 
 		updateScroll();
-	} else if (minutes === 01 && seconds === 10) {
-	// } else if (minutes === 14 && seconds === 40) {
+	} else if (minutes === 01 && seconds === 10) { //change to MomChat Page
 		nextChat(); 
-	} else if (minutes === 01 && seconds === 00) {
-	// } else if (minutes === 14 && seconds === 35) {
-		// console.log("makeMomText");
+	} else if (minutes === 01 && seconds === 00) {//1:00, Send message 13, Mom
 		momBool = true; 
 		messages.innerHTML += createMessage (data.messages[13].name, data.messages[13].class, data.messages[13].message, data.messages[13].time, data.messages.length[13]);
 		updateScroll();
 	} else if (minutes === 00 && seconds === 30) {
-	// } else if (minutes === 14 && seconds === 25) {
 		console.log("called from finalPlayerText");
-		//NOTE: Possible change this to "Thank you. I love you. heart emoji"?
-		// messages.innerHTML += createMessage ("Me", "me", correctMessage,);
 		messages.innerHTML += createMessage ("Me", "me", "No Worries. Thank you, Mom. I love you.",);
 		updateScroll();
 	} else {
