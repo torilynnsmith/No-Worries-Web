@@ -29,6 +29,7 @@ function init(){
 	console.log(notifPresent); 
 }
 
+//15 Minute Button Clicked
 function setTrue(){
 	verBool = true;
 	console.log(verBool);
@@ -39,6 +40,7 @@ function setTrue(){
 	disToStart();
 }
 
+//5 Minute Button Clicked
 function setFalse(){
 	verBool = false; 
 	console.log(verBool);
@@ -845,3 +847,15 @@ class Timer {
 }
 
 //EXTRA STUFF
+
+//NO WORRIES @ THE LOWERCASE!
+//OPENING NIGHT PARTY
+//SATURDAY, AUGUST 12TH, 7:30-11 PM
+//$25-$35
+
+//SHOW RUNS AUGUST 13TH-17TH, 1:30 PM - 8 PM
+//$15 SUGGESTED DONATION
+
+//STAY TUNED FOR VIRTUAL SIGN-UPS TO PLAY
+
+//LINK HERE FOR TIX ->
