@@ -33,8 +33,7 @@ function setTrue(){
 	verBool = true;
 	console.log(verBool);
 
-	// var startDismissable = document.getElementById("popupNotifStart2");
-	// startDismissable.remove(); 
+	//dismiss both starting notifications
 	dismissNotif();
 	notifPresent = true; 
 	disToStart();
@@ -44,8 +43,7 @@ function setFalse(){
 	verBool = false; 
 	console.log(verBool);
 
-	// var startDismissable = document.getElementById("popupNotifStart2");
-	// startDismissable.remove(); 
+	//dismiss both starting notifications
 	dismissNotif();
 	notifPresent = true; 
 	disToStart(); 
@@ -60,7 +58,7 @@ function disToStart(){
 	console.log(soundEffect); 
 	// console.log(soundEffect.autoplay);
 
-
+	console.log(verBool + " called from disToStart");
 	console.log("disToStart called"); 
 	
 	// Make the Timer
@@ -73,7 +71,6 @@ function disToStart(){
 	document.getElementById("headerWrapper").style.visibility = "visible";
 
 	//dismiss other starting popup notifications
-	// document.getElementById("popupNotif").style.visibility = "invisible":
 	dismissNotif(); 
 }
 //////////////////////////////////////////////////////////////////////////
@@ -83,6 +80,16 @@ let i = 0;
 function makeFriendText(){
 
 	var messages = document.querySelector(".phoneMessages");
+	console.log(verBool + " top of makeFriendText");
+
+	if (verBool === true) {
+		console.log(verBool + " inside of makeFriendText -> true");
+	} else if (verBool === false) {
+		console.log(verBool + " top of makeFriendText -> false");
+	} else {
+		return; 
+	}
+	//NOTE: THIS IS WHERE I LEFT OFF! NEED TO ADD THE TIMESTAMPS INTO THEIR OWN SECTIONS
 
 	if (minutes === 14 && seconds === 56){ //14:57, Send message 0, Player
 		messages.innerHTML += createMessage (data.messages[i].name, data.messages[i].class, data.messages[i].message, data.messages[i].time, data.messages.length[0]);
@@ -649,7 +656,25 @@ class Timer {
 				//replace this test funciton with makeFriendText() & makePopUp()
 				//Delete friendInterval Section
 				//Delete notifMakeInterval Section
-			makeFriendText();
+			// console.log(verBool + " called from outside if/else statments in start function");
+			//PROBLEM NOTICE: it looks like it's being reset somewhere in here....
+			//SOLUTION: maybe we move this to within the makeFriendText stuff itself? 
+
+			// if (verBool = true){
+			// 	makeFriendText();
+			// 	console.log("15 minute version")
+			// 	console.log(verBool);
+			// 	//PROBLEM: Somehow, verBool is being reset to true after the first click?
+			// } else if (verBool = false){ //if verBool is false
+			// 	makeFriendText();
+			// 	console.log("5 minute version")
+			// 	console.log(verBool);
+			// } else {
+			// 	makeFriendText(); 
+			// 	console.log("default, 15 version"); 
+			// 	console.log(verBool);
+			// }
+			makeFriendText(); 
 			makePopUp(); 
 
 			//if timer reaches 0, stop the timer
